@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#24150c">
+<meta name="mobile-web-app-capable" content="yes">
+<title>ডেস্ক ক্যালেন্ডার</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wood:#24150c; --wood2:#33200f; --brass:#c19a4b; --brass-d:#7d5f26;
+  --paper:#eadfc2; --paper2:#dccfa9; --ink:#2b2117; --red:#9a2c1f; --tile:#17100a; --glow:#f3dca0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{height:100%;overflow:hidden;background:var(--wood)}
+body{
+  font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif;color:var(--ink);
+  background:
+    repeating-linear-gradient(92deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px),
+    linear-gradient(var(--wood2),var(--wood));
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.stage{height:100%;display:grid;grid-template-columns:1fr 1.12fr;gap:3vh 3vw;padding:4vh 3vw;transition:filter .6s}
+.stage.dim{filter:brightness(.42) saturate(.8)}
+
+/* left: brass clock + weather */
+.left{display:flex;flex-direction:column;gap:2.6vh;min-height:0}
+.clock{
+  flex:1.4;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.4vh;
+  border:.5vh solid var(--brass);border-radius:1.2vh;background:rgba(0,0,0,.32);
+  box-shadow:inset 0 0 0 .4vh var(--brass-d),0 .8vh 2vh rgba(0,0,0,.55);min-height:0;position:relative;
+}
+.period{color:var(--brass);font-size:3.6vh;letter-spacing:.1em}
+.tiles{display:flex;align-items:center;gap:1vw}
+.tile{
+  position:relative;width:7.6vw;height:17vh;display:grid;place-items:center;border-radius:.9vh;
+  font-size:13vh;line-height:1;font-weight:800;color:var(--glow);background:linear-gradient(#1f150d 50%,#140d07 50%);
+  box-shadow:0 .5vh 1vh rgba(0,0,0,.6);
+}
+.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:.35vh;background:#000;opacity:.7}
+.colon{color:var(--brass);font-size:11vh;font-weight:800;animation:blink 2s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.sec{color:var(--brass);font-size:3.8vh;min-width:4vw}
+.weekday{color:var(--glow);font-size:4.4vh;font-weight:600}
+.tools{position:absolute;top:1vh;right:1vh;display:flex;gap:1vh}
+.tools button{
+  width:5.4vh;height:5.4vh;border-radius:50%;border:.3vh solid var(--brass-d);background:transparent;
+  color:var(--brass);font-size:2.8vh;cursor:pointer;opacity:.7
+}
+.tools button:active{background:var(--brass-d)}
+.dot{position:absolute;left:1.4vh;top:1.4vh;width:1.3vh;height:1.3vh;border-radius:50%;background:#555}
+.dot.on{background:#7fb26a}
+
+.weather{
+  flex:1;display:flex;align-items:center;gap:2vw;padding:1.6vh 2vw;min-height:0;
+  border:.4vh solid var(--brass-d);border-radius:1.2vh;background:rgba(0,0,0,.28);color:var(--glow)
+}
+.wicon{font-size:9vh;line-height:1}
+.wtemp{font-size:8vh;font-weight:800;line-height:1}
+.wtemp small{font-size:3.6vh;color:var(--brass)}
+.wcond{font-size:3.6vh;font-weight:600}
+.wmeta{font-size:2.7vh;color:#d4c08a;line-height:1.5}
+.wnote{font-size:2.2vh;color:var(--brass)}
+
+/* right: paper calendar page */
+.right{display:flex;min-height:0}
+.page{
+  flex:1;display:flex;flex-direction:column;min-height:0;border-radius:.8vh;padding:2.2vh 2vw 1.8vh;
+  background:linear-gradient(#f0e6ca,var(--paper2));
+  box-shadow:0 1vh 2.4vh rgba(0,0,0,.6),inset 0 0 6vh rgba(120,90,40,.28);
+  position:relative;
+}
+.page::before{ /* binding holes */
+  content:"";position:absolute;top:-1.2vh;left:8%;right:8%;height:2.4vh;
+  background:radial-gradient(circle,var(--brass) 38%,transparent 42%) 0 0/4.4vw 2.4vh repeat-x;
+}
+.head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:.35vh double var(--ink);padding-bottom:1vh}
+.month{font-size:5.4vh;font-weight:800}
+.year{font-size:4vh;font-weight:600;color:var(--red)}
+.today{display:flex;align-items:baseline;gap:1.6vw;padding:.8vh 0;font-size:3.2vh}
+.today b{font-size:7.4vh;color:var(--red);line-height:1}
+.grid{flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;min-height:0;font-size:3.5vh;text-align:center}
+.grid div{display:grid;place-items:center}
+.grid .dh{font-size:2.8vh;font-weight:800;border-bottom:.2vh solid rgba(43,33,23,.5)}
+.grid .fri{color:var(--red)}
+.grid .off{opacity:0}
+.grid .now{
+  background:var(--ink);color:var(--paper);border-radius:50%;aspect-ratio:1;height:88%;justify-self:center;font-weight:800;
+  box-shadow:0 0 0 .4vh var(--red)
+}
+
+@media (orientation:portrait){
+  .stage{grid-template-columns:1fr;grid-template-rows:auto auto;overflow:auto}
+  .tile{width:14vw;height:12vh;font-size:9vh}
+}
+@media (prefers-reduced-motion:reduce){.colon{animation:none}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <section class="left">
+    <div class="clock">
+      <span class="dot" id="dot" title="স্ক্রিন জাগ্রত"></span>
+      <div class="tools">
+        <button id="bDim" aria-label="ডিম মোড">☾</button>
+        <button id="bFull" aria-label="ফুলস্ক্রিন">⛶</button>
+      </div>
+      <div class="period" id="period"></div>
+      <div class="tiles" id="tiles"></div>
+      <div class="weekday" id="weekday"></div>
+    </div>
+    <div class="weather">
+      <div class="wicon" id="wicon">⛅</div>
+      <div>
+        <div class="wtemp" id="wtemp">--<small>°সে</small></div>
+        <div class="wcond" id="wcond">ঢাকা · লোড হচ্ছে…</div>
+      </div>
+      <div>
+        <div class="wmeta" id="wmeta"></div>
+        <div class="wnote" id="wnote"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="right">
+    <div class="page">
+      <div class="head"><span class="month" id="month"></span><span class="year" id="year"></span></div>
+      <div class="today"><b id="tdNum"></b><span id="tdText"></span></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const BN = '০১২৩৪৫৬৭৮৯';
+const bn = n => String(n).replace(/\d/g, d => BN[d]);
+const MONTHS = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+const DAYS = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+const DSHORT = ['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'];
+const pad = n => String(n).padStart(2, '0');
+
+function periodName(h){
+  if (h >= 4 && h < 6) return 'ভোর';
+  if (h >= 6 && h < 12) return 'সকাল';
+  if (h >= 12 && h < 15) return 'দুপুর';
+  if (h >= 15 && h < 17) return 'বিকাল';
+  if (h >= 17 && h < 19) return 'সন্ধ্যা';
+  return 'রাত';
+}
+
+/* ---------- clock ---------- */
+let lastDay = '';
+let manualDim = null;
+function tick(){
+  const d = new Date();
+  const h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+  const h12 = h % 12 || 12;
+  const t = bn(pad(h12)) + bn(pad(m));
+  $('tiles').innerHTML =
+    `<div class="tile">${t[0]}</div><div class="tile">${t[1]}</div><span class="colon">:</span>` +
+    `<div class="tile">${t[2]}</div><div class="tile">${t[3]}</div><span class="sec">${bn(pad(s))}</span>`;
+  $('period').textContent = periodName(h);
+  $('weekday').textContent = DAYS[d.getDay()];
+
+  const key = d.toDateString();
+  if (key !== lastDay){ lastDay = key; drawCalendar(d); }
+
+  // auto dim 10 PM - 6 AM unless the user toggled manually
+  const night = h >= 22 || h < 6;
+  $('stage').classList.toggle('dim', manualDim === null ? night : manualDim);
+}
+
+function drawCalendar(d){
+  const y = d.getFullYear(), mo = d.getMonth(), today = d.getDate();
+  $('month').textContent = MONTHS[mo];
+  $('year').textContent = bn(y);
+  $('tdNum').textContent = bn(today);
+  $('tdText').textContent = DAYS[d.getDay()] + ', ' + MONTHS[mo];
+  const first = new Date(y, mo, 1).getDay();
+  const count = new Date(y, mo + 1, 0).getDate();
+  let html = DSHORT.map((n, i) => `<div class="dh${i === 5 ? ' fri' : ''}">${n}</div>`).join('');
+  for (let i = 0; i < first; i++) html += '<div class="off">·</div>';
+  for (let day = 1; day <= count; day++){
+    const wd = (first + day - 1) % 7;
+    const cls = (day === today ? 'now' : '') + (wd === 5 && day !== today ? ' fri' : '');
+    html += `<div class="${cls}">${bn(day)}</div>`;
+  }
+  $('grid').innerHTML = html;
+}
+
+/* ---------- weather (Open-Meteo, Dhaka) ---------- */
+const WX = c => {
+  if (c === 0) return ['পরিষ্কার আকাশ','☀️'];
+  if (c <= 2) return ['আংশিক মেঘলা','⛅'];
+  if (c === 3) return ['মেঘলা','☁️'];
+  if (c === 45 || c === 48) return ['কুয়াশা','🌫️'];
+  if (c >= 51 && c <= 57) return ['গুঁড়িগুঁড়ি বৃষ্টি','🌦️'];
+  if (c >= 61 && c <= 67) return ['বৃষ্টি','🌧️'];
+  if (c >= 71 && c <= 77) return ['তুষারপাত','❄️'];
+  if (c >= 80 && c <= 82) return ['ঝমঝম বৃষ্টি','🌧️'];
+  if (c >= 95) return ['বজ্রসহ বৃষ্টি','⛈️'];
+  return ['অজানা','🌡️'];
+};
+const URL_WX = 'https://api.open-meteo.com/v1/forecast?latitude=23.8103&longitude=90.4125' +
+  '&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day' +
+  '&daily=temperature_2m_max,temperature_2m_min&timezone=auto';
+
+function showWeather(w, stale){
+  const c = w.current;
+  let [txt, icon] = WX(c.weather_code);
+  if (c.weather_code === 0 && !c.is_day) icon = '🌙';
+  $('wicon').textContent = icon;
+  $('wtemp').innerHTML = bn(Math.round(c.temperature_2m)) + '<small>°সে</small>';
+  $('wcond').textContent = 'ঢাকা · ' + txt;
+  $('wmeta').innerHTML =
+    `অনুভূত ${bn(Math.round(c.apparent_temperature))}° · আর্দ্রতা ${bn(c.relative_humidity_2m)}%<br>` +
+    `বাতাস ${bn(Math.round(c.wind_speed_10m))} কিমি/ঘণ্টা<br>` +
+    `সর্বোচ্চ ${bn(Math.round(w.daily.temperature_2m_max[0]))}° · সর্বনিম্ন ${bn(Math.round(w.daily.temperature_2m_min[0]))}°`;
+  const t = new Date(w.savedAt || Date.now());
+  $('wnote').textContent = (stale ? 'ইন্টারনেট নেই, শেষ তথ্য: ' : 'হালনাগাদ: ') + bn(pad(t.getHours())) + ':' + bn(pad(t.getMinutes()));
+}
+
+async function loadWeather(){
+  try{
+    const r = await fetch(URL_WX);
+    if (!r.ok) throw new Error(r.status);
+    const w = await r.json();
+    w.savedAt = Date.now();
+    try { localStorage.setItem('wx', JSON.stringify(w)); } catch (e) {}
+    showWeather(w, false);
+  }catch(e){
+    let w = null;
+    try { w = JSON.parse(localStorage.getItem('wx')); } catch (e2) {}
+    if (w) showWeather(w, true);
+    else $('wcond').textContent = 'ওয়েদার পাওয়া যায়নি';
+  }
+}
+
+/* ---------- keep screen awake ---------- */
+let wl = null;
+async function keepAwake(){
+  try{
+    if ('wakeLock' in navigator){
+      wl = await navigator.wakeLock.request('screen');
+      $('dot').classList.add('on');
+      wl.addEventListener('release', () => $('dot').classList.remove('on'));
+    }
+  }catch(e){ $('dot').classList.remove('on'); }
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') keepAwake(); });
+
+/* ---------- buttons ---------- */
+$('bFull').onclick = () => {
+  const el = document.documentElement;
+  if (document.fullscreenElement) document.exitFullscreen();
+  else if (el.requestFullscreen) el.requestFullscreen().then(() => {
+    if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {});
+  }).catch(() => {});
+  keepAwake();
+};
+$('bDim').onclick = () => {
+  const now = $('stage').classList.contains('dim');
+  manualDim = !now;
+  tick();
+};
+
+tick(); setInterval(tick, 1000);
+loadWeather(); setInterval(loadWeather, 15 * 60 * 1000);
+keepAwake();
+document.addEventListener('click', () => { if (!wl || wl.released) keepAwake(); }, { once: true });
+</script>
+</body>
+</html>

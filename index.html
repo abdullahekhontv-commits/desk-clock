@@ -148,12 +148,46 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .bh{color:rgba(255,0,0,.82);font-size:62vh}.bm{color:rgba(40,60,255,.9);font-size:62vh}.bs{color:rgba(255,255,0,.88);font-size:30vh;margin:13vh 0 0 1vw}
 .bd{position:absolute;left:38vw;top:63vh;font-family:'Gushing',serif;font-size:9vh;color:#ff4500;white-space:nowrap}
 
+
+.v1.on,.v2.on,.v3.on,.v6.on{padding-top:5.8vh}.v5.on{padding-top:6vh}
+
+/* ===== v9: e-paper ===== */
+.v9{--pp:#c9cdc8;background:#efefec}
+.v9.on{display:grid;padding:5.6vh 2.4vw 3.2vh}
+.v9 .batt{--bc:#141414;--bf:#141414;--bt:#141414}
+.scr{min-height:0;overflow:hidden;border-radius:1.6vh;color:#141414;padding:2vh 2vw 1.6vh;display:grid;grid-template-rows:1fr auto auto;gap:1.6vh;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/></svg>"),var(--pp);
+  box-shadow:inset 0 0 0 .4vh #aeb2ad,inset 0 .6vh 1.6vh rgba(0,0,0,.14)}
+.v9 .top{display:grid;grid-template-columns:1fr 1.15fr 1.05fr;gap:2vw;min-height:0}
+.v9 .sec{border-left:.7vh solid #6f736e;padding-left:1.4vw;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.v9 .wrow{display:flex;align-items:center;gap:1.2vw}
+.v9 .ico svg{width:17vh;height:17vh;display:block}
+.v9 .wt{font-size:19vh;line-height:1}
+.v9 .wc{font-size:4.2vh;font-weight:600;margin:.6vh 0 .8vh}
+.v9 .wd9{font-size:3.2vh;line-height:1.45}
+.v9 .tl9{font-size:3.6vh}
+.v9 .tm9{display:flex;align-items:flex-end;gap:1vw;line-height:1}
+.v9 .tm9 [data-k=hm]{font-size:21vh}
+.v9 .ss9{font-size:9vh;padding-bottom:1.6vh}
+.v9 .dt9{font-size:3.8vh;margin-top:1.2vh;line-height:1.35}
+.v9 .hd9{display:flex;justify-content:space-between;align-items:baseline;font-size:4.2vh;border-bottom:.4vh solid #141414;padding-bottom:.6vh;margin-bottom:.4vh}
+.v9 .calgrid{--cf:3.3vh}
+.v9 .calgrid .fri{color:inherit;font-weight:800}
+.v9 .calgrid .now{background:#141414;color:#d4d7d2;border-radius:.5vh;box-shadow:none;aspect-ratio:auto;height:84%;width:84%;justify-self:center}
+.v9 .fcs{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6vw;border-top:.4vh solid #6f736e;padding-top:1.2vh}
+.v9 .fi9{display:flex;align-items:center;gap:.8vw}
+.v9 .fi9 svg{width:7.6vh;height:7.6vh;flex:none}
+.v9 .fi9 div{display:flex;flex-direction:column;font-size:3vh;line-height:1.25}
+.v9 .fi9 b{font-size:3.4vh}
+.v9 .fi9 .fh9{margin-left:auto;text-align:right}
+.v9 .foot{display:flex;justify-content:space-between;font-size:2.9vh;background:#b6bab5;border-radius:.8vh;padding:.7vh 1.2vw}
+
 /* ===== battery (one look per design) ===== */
-.batt{position:absolute;top:.6vh;right:2.4vw;z-index:5;display:flex;align-items:center;gap:.8vh;font-size:2.4vh;line-height:1;color:var(--bt,#fff);pointer-events:none}
+.batt{position:absolute;top:.8vh;right:2vw;z-index:5;display:flex;align-items:center;gap:1vh;font-size:3.4vh;font-weight:600;line-height:1;color:var(--bt,#fff);pointer-events:none}
 .nobatt .batt{display:none}
-.bi{position:relative;display:inline-block;width:5vh;height:2.4vh;border:.26vh solid var(--bc,#fff);border-radius:.5vh;padding:.22vh}
-.bi::after{content:"";position:absolute;right:-.65vh;top:.5vh;width:.4vh;height:.9vh;background:var(--bc,#fff);border-radius:0 .2vh .2vh 0}
-.bi i{display:block;height:100%;width:calc(var(--lv,100) * 1%);background:var(--bf,#fff);border-radius:.2vh}
+.bi{position:relative;display:inline-block;width:7.6vh;height:3.6vh;border:.34vh solid var(--bc,#fff);border-radius:.7vh;padding:.3vh}
+.bi::after{content:"";position:absolute;right:-1vh;top:.8vh;width:.6vh;height:1.5vh;background:var(--bc,#fff);border-radius:0 .3vh .3vh 0}
+.bi i{display:block;height:100%;width:calc(var(--lv,100) * 1%);background:var(--bf,#fff);border-radius:.3vh}
 .chg .bp::before{content:"⚡";font-size:.9em}
 .low .bi i{background:#d33}
 .v1 .batt,.v2 .batt{--bc:#c19a4b;--bf:#f3dca0;--bt:#f3dca0}
@@ -162,7 +196,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .v5 .batt{--bc:#bbb;--bf:#ff7a1a;--bt:#ddd}
 .v6 .batt{--bc:#333;--bf:#333;--bt:#333}
 .v7 .batt{--bc:#5b4630;--bf:#5b4630;--bt:#5b4630}
-.v8 .batt{--bc:#a00;--bf:#e00;--bt:#e22;font-family:'Gushing',serif;font-size:3.2vh}
+.v8 .batt{--bc:#a00;--bf:#e00;--bt:#e22;font-family:'Gushing',serif;font-size:4.2vh}
 /* ===== control bar ===== */
 #bar{position:fixed;left:50%;bottom:3vh;transform:translateX(-50%);display:flex;align-items:center;gap:1.4vh;padding:1.2vh 2vh;border-radius:6vh;background:rgba(15,15,15,.82);border:.3vh solid #7d5f26;color:#f3dca0;opacity:0;pointer-events:none;transition:opacity .35s;z-index:9;font-family:'Noto Sans Bengali',sans-serif}
 #bar.show{opacity:1;pointer-events:auto}
@@ -250,6 +284,29 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
   <div class="bd" data-k="edate"></div>
 </section>
 
+<section class="view v9 sans" data-name="ই-পেপার">
+  <div class="scr">
+    <div class="top">
+      <div class="sec">
+        <div class="wrow"><span class="ico" data-h="ico"></span><span class="wt" data-k="temp"></span></div>
+        <div class="wc" data-k="cond"></div>
+        <div class="wd9"><div data-k="feels"></div><div data-k="hum"></div><div data-k="wind"></div><div data-k="rain"></div><div><span data-k="hi"></span> · <span data-k="lo"></span></div></div>
+      </div>
+      <div class="sec">
+        <div class="tl9" data-k="per"></div>
+        <div class="tm9"><span data-k="hm"></span><span class="ss9" data-k="s"></span></div>
+        <div class="dt9"><span data-k="wd"></span><br><span data-k="dl"></span></div>
+      </div>
+      <div class="sec">
+        <div class="hd9"><b data-k="mn"></b><span data-k="yr"></span></div>
+        <div class="calgrid"></div>
+      </div>
+    </div>
+    <div class="fcs" id="fc9"></div>
+    <div class="foot"><span>ঢাকা · আবহাওয়া</span><span data-k="upd"></span></div>
+  </div>
+</section>
+
 </div>
 
 <div id="dimmer"></div>
@@ -274,6 +331,21 @@ const DSHORT = ['রবি','সোম','মঙ্গল','বুধ','বৃহ
 /* ---- data binding: set(key, text) updates every [data-k=key] ---- */
 const C = {};
 const set = (k, v) => { if (C[k] === v) return; C[k] = v; document.querySelectorAll(`[data-k="${k}"]`).forEach(e => { if (e.classList.contains('flap')) flipTo(e, v); else e.textContent = v; }); };
+
+const seth = (k, h) => { const key = 'h:' + k; if (C[key] === h) return; C[key] = h; document.querySelectorAll(`[data-h="${k}"]`).forEach(e => e.innerHTML = h); };
+const SV = b => `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${b}</svg>`;
+const CL = '<path style="fill:var(--pp,#c9cdc8)" d="M20 46h26a10 10 0 0 0 1-19.9A14 14 0 0 0 20.5 29 8.5 8.5 0 0 0 20 46z"/>';
+const SUN = '<circle cx="32" cy="32" r="9"/><path d="M32 10v7M32 47v7M10 32h7M47 32h7M16.5 16.5l5 5M42.5 42.5l5 5M16.5 47.5l5-5M42.5 21.5l5-5"/>';
+const DROP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3C8 9 6 12 6 15a6 6 0 0 0 12 0c0-3-2-6-6-12z"/></svg>';
+function wsvg(c, day){
+  if (c === 0) return SV(day ? SUN : '<path d="M42 42A19 19 0 0 1 24 12a19 19 0 1 0 18 30z"/>');
+  if (c <= 2) return SV(day ? '<circle cx="22" cy="22" r="7"/><path d="M22 7v4M22 33v4M7 22h4M33 22h4M12 12l3 3M32 12l-3 3M12 32l3-3"/>' + CL.replace('d="M20 46h26a10 10 0 0 0 1-19.9A14 14 0 0 0 20.5 29 8.5 8.5 0 0 0 20 46z"','d="M24 52h26a10 10 0 0 0 1-19.9A14 14 0 0 0 24.5 35 8.5 8.5 0 0 0 24 52z"') : CL);
+  if (c === 3) return SV(CL);
+  if (c === 45 || c === 48) return SV('<path d="M12 22h40M8 32h44M14 42h38M20 52h28"/>');
+  if (c >= 71 && c <= 77) return SV(CL + '<path d="M24 54h.1M33 58h.1M42 54h.1" stroke-width="5"/>');
+  if (c >= 95) return SV(CL + '<path d="M35 46l-6 8h7l-5 9"/>');
+  return SV(CL + '<path d="M24 52l-3 7M33 52l-3 7M42 52l-3 7"/>');
+}
 
 function flipTo(e, v){
   if (!e._b){
@@ -367,6 +439,14 @@ function showWeather(w, stale){
          `<span>${dg(D.temperature_2m_max[i])}</span><span class="fh">${dg(D.temperature_2m_min[i])}</span></div>`;
   }
   $('fc').innerHTML = f;
+  seth('ico', wsvg(c.weather_code, c.is_day));
+  let g = '';
+  for (let i = 0; i < Math.min(4, D.time.length); i++){
+    const lab = i === 0 ? 'আজ' : i === 1 ? 'কাল' : DSHORT[new Date(D.time[i] + 'T00:00:00').getDay()];
+    g += `<div class="fi9">${wsvg(D.weather_code[i], 1)}<div><b>${lab}</b><span>${WX(D.weather_code[i])[0]}</span></div>` +
+         `<div class="fh9"><b>${dg(D.temperature_2m_max[i])}</b><span>${dg(D.temperature_2m_min[i])}</span></div></div>`;
+  }
+  $('fc9').innerHTML = g;
 }
 async function loadWeather(){
   try{

@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>ডেস্ক ক্যালেন্ডার</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;800&family=Noto+Sans+Bengali:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;800&family=Noto+Sans+Bengali:wght@400;600;800&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
 <style>:root{--u:1vh;--w:calc(var(--u) * 2.17)}
 .view.on{display:block}
 .fit{position:absolute;inset:0;margin:auto;width:calc(217*var(--u));height:calc(100*var(--u))}
@@ -38,7 +38,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .colon{color:var(--brass);font-size:calc(10*var(--u));font-weight:800;animation:blink 2s steps(1) infinite}
 @keyframes blink{50%{opacity:.25}}
 .weekday{color:var(--glow);font-size:calc(4.4*var(--u));font-weight:600}
-.weather{flex:1;display:flex;align-items:center;gap:calc(2*var(--w));padding:calc(1.6*var(--u)) calc(2*var(--w));min-height:0;border:calc(.4*var(--u)) solid var(--brass-d);border-radius:calc(1.2*var(--u));background:rgba(0,0,0,.28);color:var(--glow)}
+.weather{flex:1;display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:calc(1.1*var(--u));--pp:#241a10;padding:calc(1.6*var(--u)) calc(2*var(--w));min-height:0;border:calc(.4*var(--u)) solid var(--brass-d);border-radius:calc(1.2*var(--u));background:rgba(0,0,0,.28);color:var(--glow)}
 .wicon{font-size:calc(9*var(--u));line-height:1}
 .wtemp{font-size:calc(8*var(--u));font-weight:800;line-height:1}
 .wcond{font-size:calc(3.4*var(--u));font-weight:600}
@@ -73,7 +73,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 /* ===== v2: analog classic ===== */
 .v2.on>.fit{display:grid;grid-template-columns:auto 1fr;gap:calc(3*var(--w));padding:calc(4*var(--u)) calc(3*var(--w));align-items:center}
 .v2 .calgrid{--cf:calc(3*var(--u))}.v2 .today{display:none}.v2 .rcol{height:100%}
-.v2 .weather{flex:.42}.v2 .wicon{font-size:calc(6*var(--u))}.v2 .wtemp{font-size:calc(5.4*var(--u))}.v2 .wcond{font-size:calc(2.8*var(--u))}.v2 .wmeta{font-size:calc(2.2*var(--u))}.v2 .wnote{display:none}
+.v2 .weather{flex:.55}.v2 .wicon{font-size:calc(6*var(--u))}.v2 .wtemp{font-size:calc(5.4*var(--u))}.v2 .wcond{font-size:calc(2.8*var(--u))}.v2 .wmeta{font-size:calc(2.2*var(--u))}.v2 .wnote{display:none}
 
 /* ===== v3: smart display ===== */
 .v3{--pp:#c9cdc8;background:var(--grain),var(--pp);color:#141414}
@@ -228,6 +228,124 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .v11 .calgrid .now{background:#1b1f13;color:#b9c3a6;border-radius:calc(.3*var(--u));box-shadow:none;aspect-ratio:auto;height:88%;width:88%;justify-self:center}
 .v11 .ewd{font-size:calc(6.4*var(--u));font-weight:800;letter-spacing:.12em;line-height:1}
 .v11 .calgrid{height:calc(25*var(--u))}
+
+/* ===== 3-day forecast strip (v1, v2, v4, v5, v10, v11) ===== */
+.wr{display:flex;align-items:center;gap:calc(2*var(--w));min-height:0}
+.weather .f3{border-top:calc(.3*var(--u)) solid var(--brass-d);padding-top:calc(1*var(--u));--fl:rgba(193,154,75,.45)}
+.f3{display:flex;gap:calc(1.6*var(--w));--fs:calc(2.7*var(--u));--fi:calc(6*var(--u));--fl:rgba(255,255,255,.25)}
+.f3 .fq{flex:1;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i l" "i t";column-gap:calc(.8*var(--w));align-items:center;font-size:var(--fs);line-height:1.25;border-left:calc(.25*var(--u)) solid var(--fl);padding-left:calc(1.2*var(--w))}
+.f3 .fq:first-child{border-left:0;padding-left:0}
+.f3 .q1{grid-area:l;align-self:end;font-weight:800}
+.f3 .q2{grid-area:i}
+.f3 .q3{grid-area:t;align-self:start;white-space:nowrap}
+.fq{min-width:0}
+.fq .q2{width:var(--fi);height:var(--fi)}
+.fq .q2 svg{width:100%;height:100%;display:block}
+.fq em{font-style:normal;opacity:.62;margin-left:.45em}
+.fq .q5{display:none}
+.v1 .f3{--fs:calc(2.9*var(--u));--fi:calc(6.4*var(--u))}
+.v2 .f3{--fs:calc(2.3*var(--u));--fi:calc(4.6*var(--u))}
+.v4 .f3{--fs:calc(4*var(--u));--fi:calc(8*var(--u));--fl:rgba(255,180,77,.3);--pp:#000;color:#ffb44d;width:calc(118*var(--u));margin-top:calc(2*var(--u));gap:calc(3*var(--w))}
+.v5 .f3{--fs:calc(3.2*var(--u));--fi:calc(6.4*var(--u));--fl:#444;--pp:#050505;color:#ddd;margin-top:calc(1.6*var(--u))}
+.v10 .f3,.v11 .f3{--fs:calc(2.9*var(--u));--fi:calc(6*var(--u));--fl:rgba(27,31,19,.4);--pp:#b9c3a6;color:#1b1f13;font-weight:700}
+.v10 .f3{padding-top:calc(.8*var(--u));border-top:calc(.3*var(--u)) solid #1b1f13}
+.v10.on>.fit{grid-template-rows:auto 1fr auto auto}
+
+/* ===== v12-v16: e-paper set (from reference image) ===== */
+.ep{--pp:#d6d7d4;--ink2:#41423f;background:var(--grain),var(--pp);color:#0d0d0d;font-family:'Roboto Condensed','Arial Narrow','Noto Sans Bengali',sans-serif;font-weight:700}
+.ep .batt{--bc:#111;--bf:#111;--bt:#111}
+.ep svg{display:block}
+.ep .fe{display:grid;--fi:calc(10*var(--u))}
+.ep .calgrid{--cf:calc(4.4*var(--u))}
+.ep .calgrid .dh{border-bottom:calc(.25*var(--u)) solid #0d0d0d;font-size:.9em}
+.ep .calgrid .now{background:#0d0d0d;color:#d6d7d4;border-radius:calc(.4*var(--u));box-shadow:none;aspect-ratio:auto;height:88%;width:88%;justify-self:center}
+.ep .ico svg,.ep .wi svg{width:100%;height:100%}
+.ep .q1,.ep .q5{text-transform:uppercase}
+
+/* v12: clock | date, month calendar, 4-day forecast */
+.v12.on>.fit{display:grid;grid-template-rows:auto 1fr auto;gap:calc(1.8*var(--u));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.xhd{display:flex;align-items:baseline;gap:calc(1.4*var(--w));line-height:1;white-space:nowrap}
+.xhd .xt{font-size:calc(15*var(--u))}.xhd .xap{font-size:calc(8*var(--u))}
+.xhd .xbar{width:calc(.5*var(--u));height:calc(13*var(--u));background:#0d0d0d;align-self:center;margin:0 calc(.6*var(--w))}
+.xbd{display:grid;grid-template-columns:calc(78*var(--u)) 1fr;gap:calc(4*var(--w));min-height:0}
+.xcb{display:flex;flex-direction:column;min-height:0}
+.xmy{font-size:calc(6*var(--u));line-height:1.1;margin-bottom:calc(.8*var(--u))}
+.v12 .fe{grid-template-columns:repeat(4,1fr);gap:calc(1.2*var(--w))}
+.v12 .fq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(1*var(--u));border-left:calc(.4*var(--u)) solid #0d0d0d;text-align:center;--fi:calc(15*var(--u))}
+.v12 .q1{font-size:calc(5.6*var(--u))}
+.v12 .q3{font-size:calc(8*var(--u));line-height:1}
+.v12 .q3 em{display:block;margin:calc(.6*var(--u)) 0 0;font-size:calc(5.2*var(--u));opacity:.7}
+.v12 .q5{display:block;font-size:calc(3.8*var(--u));line-height:1.1;color:var(--ink2)}
+.xwl{font-size:calc(6.6*var(--u));text-transform:uppercase;line-height:1;white-space:nowrap}
+
+/* v13: time + agenda | forecast column */
+.v13.on>.fit{display:grid;grid-template-columns:1fr calc(64*var(--u));gap:calc(3*var(--w));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.xlf{display:flex;flex-direction:column;justify-content:center;gap:calc(2.4*var(--u));min-width:0}
+.xtm{display:flex;align-items:baseline;gap:calc(1.2*var(--w));line-height:1;white-space:nowrap}
+.xtm .xt{font-size:calc(20*var(--u))}.xtm .xap{font-size:calc(9*var(--u))}
+.xag{display:flex;flex-direction:column;gap:calc(.9*var(--u));font-size:calc(7.4*var(--u));line-height:1.1}
+.xag div{display:flex;gap:calc(1.2*var(--w));white-space:nowrap}
+.xag b{min-width:calc(5.6*var(--u));text-align:center;padding:0 calc(.4*var(--w))}
+.xag .on b{background:#0d0d0d;color:#d6d7d4;border-radius:calc(.4*var(--u))}
+.v13 .fe{grid-template-rows:repeat(4,1fr);border-left:calc(.5*var(--u)) solid #0d0d0d;padding-left:calc(2*var(--w))}
+.v13 .fq{display:grid;grid-template-columns:auto auto 1fr;grid-template-areas:"l l i" "h o i";align-items:center;align-content:center;column-gap:calc(.8*var(--w));--fi:calc(11*var(--u))}
+.v13 .fq+.fq{border-top:calc(.3*var(--u)) solid #6f736e}
+.v13 .q1{grid-area:l;font-size:calc(6.6*var(--u));line-height:1}
+.v13 .q2{grid-area:i;justify-self:end}
+.v13 .q3{grid-area:h/h/o/o;font-size:calc(6.6*var(--u));line-height:1.1;white-space:nowrap}
+.v13 .q3 em{opacity:.6}
+
+/* v14: pixel analog + digital + 4-day strip */
+.v14.on>.fit{display:grid;grid-template-columns:auto 1fr;gap:calc(4*var(--w));align-items:center;padding:calc(6*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.v14 .an{width:calc(84*var(--u));height:calc(84*var(--u))}
+.a-ep .bez,.a-ep .tm,.a-ep .tn{display:none}
+.a-ep .face{fill:none;stroke:none}
+.a-ep .num{fill:#0d0d0d;font-weight:700;font-size:21px;font-family:inherit}
+.a-ep .hh,.a-ep .mh{stroke:#0d0d0d}
+.a-ep .hh line{stroke-width:7;stroke-linecap:butt}.a-ep .mh line{stroke-width:5;stroke-linecap:butt}
+.a-ep .sh{stroke:#0d0d0d;fill:#0d0d0d}
+.xrt{display:flex;flex-direction:column;gap:calc(1.4*var(--u));min-width:0}
+.xrt .xt{font-size:calc(19*var(--u));line-height:1;text-align:right;white-space:nowrap}
+.xrt .xd{font-size:calc(8.6*var(--u));line-height:1;text-align:right}
+.xrt .xw{display:flex;justify-content:flex-end;align-items:center;gap:calc(1.2*var(--w));font-size:calc(8.6*var(--u));line-height:1;text-transform:uppercase}
+.xrt .xw .wi{width:calc(10*var(--u));height:calc(10*var(--u))}
+.xsun{font-size:calc(4.2*var(--u));text-align:right;color:var(--ink2);text-transform:uppercase}
+.v14 .fe{grid-template-columns:repeat(4,1fr);border-top:calc(.4*var(--u)) solid #0d0d0d;padding-top:calc(1.4*var(--u));margin-top:calc(.6*var(--u))}
+.v14 .fq{display:flex;flex-direction:column;align-items:center;gap:calc(.5*var(--u));border-left:calc(.3*var(--u)) solid #6f736e;--fi:calc(8*var(--u))}
+.v14 .fq:first-child{border-left:0}
+.v14 .q1{font-size:calc(4.4*var(--u));line-height:1}
+.v14 .q3{font-size:calc(5.6*var(--u));line-height:1;white-space:nowrap}
+.v14 .q3 em{opacity:.6;font-size:.8em}
+
+/* v15: big time + hourly chart + 4-day chart */
+.v15.on>.fit{display:grid;grid-template-columns:1fr calc(112*var(--u));gap:calc(3*var(--w));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.v15 .xlf{align-items:center;justify-content:center;gap:calc(.6*var(--u));line-height:.95;text-align:center}
+.v15 .xlf .xt{font-size:calc(20*var(--u));white-space:nowrap}
+.v15 .xlf .xap{font-size:calc(24*var(--u));line-height:1}
+.v15 .xlf .xwl{font-size:calc(4.4*var(--u));margin-top:calc(2*var(--u))}
+.xcol{display:flex;flex-direction:column;gap:calc(1.6*var(--u));min-height:0}
+.xdt{text-align:right;font-size:calc(7.6*var(--u));line-height:1;text-transform:uppercase}
+.xch svg{width:calc(112*var(--u))}
+#ch1 svg,.xch.c1 svg{height:calc(32*var(--u))}.xch.c2 svg{height:calc(42*var(--u))}
+
+/* v16: huge time + big weather + 4-day strip */
+.v16.on>.fit{display:grid;grid-template-rows:1fr auto;gap:calc(2*var(--u));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.xtp{display:grid;grid-template-columns:1fr auto;gap:calc(4*var(--w));align-items:center;min-height:0}
+.xtp .xtm .xt{font-size:calc(40*var(--u))}.xtp .xtm .xap{font-size:calc(10*var(--u))}
+.xwx{display:flex;align-items:center;justify-content:flex-end;gap:calc(2*var(--w))}
+.xwx .wi{width:calc(28*var(--u));height:calc(28*var(--u));flex:none}
+.xwx .xwt{font-size:calc(22*var(--u));line-height:1}
+.xwx .xwc{font-size:calc(7*var(--u));line-height:1.1;text-transform:uppercase;margin-top:calc(1*var(--u))}
+.xbt{display:grid;grid-template-columns:auto 1fr;gap:calc(3*var(--w));align-items:center;border-top:calc(.5*var(--u)) solid #0d0d0d;padding-top:calc(1.6*var(--u))}
+.xdd{font-size:calc(11*var(--u));line-height:1;text-transform:uppercase}
+.v16 .fe{grid-template-columns:repeat(4,1fr)}
+.v16 .fq{display:grid;grid-template-columns:auto auto;grid-template-areas:"l l" "i i" "h o";justify-content:center;justify-items:center;gap:calc(.4*var(--u)) calc(.8*var(--w));border-left:calc(.4*var(--u)) solid #0d0d0d;--fi:calc(10*var(--u))}
+.v16 .fq:first-child{border-left:0}
+.v16 .q1{grid-area:l;font-size:calc(5*var(--u));line-height:1}
+.v16 .q2{grid-area:i}
+.v16 .q3{grid-area:h/h/o/o;font-size:calc(6.4*var(--u));line-height:1;white-space:nowrap}
+.v16 .q3 em{opacity:.6;font-size:.8em}
+
 /* ===== battery (one look per design) ===== */
 .batt{position:absolute;top:calc(.8*var(--u));right:calc(2*var(--w));z-index:5;display:flex;align-items:center;gap:calc(1*var(--u));font-size:calc(3.4*var(--u));font-weight:600;line-height:1;color:var(--bt,#fff);pointer-events:none}
 .nobatt .batt{display:none}
@@ -295,6 +413,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
   <div class="row"><span class="big" data-k="hm"></span><span class="bigs" data-k="s"></span></div>
   <div class="dl"><span data-k="wd"></span> · <span data-k="dl"></span></div>
   <div class="wl"><span data-k="icon"></span> <span data-k="temp"></span> · <span data-k="cond"></span> · <span data-k="hum"></span></div>
+  <div class="f3" data-h="f3"></div>
 </section>
 
 <section class="view v5 a-mod sans" data-name="অ্যানালগ আধুনিক">
@@ -304,6 +423,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
     <div class="l1"><span data-k="wd"></span></div>
     <div class="l2"><span data-k="mn"></span> <span data-k="yr"></span></div>
     <div class="l3"><span data-k="icon"></span> <span data-k="temp"></span> · <span data-k="cond"></span><br><span data-k="hum"></span></div>
+    <div class="f3" data-h="f3"></div>
   </div>
 </section>
 
@@ -369,6 +489,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
     <span data-h="ls" style="--lh:calc(20*var(--u));align-self:flex-end;margin-bottom:calc(3*var(--u))"></span>
   </div>
   <div class="l3"><span data-k="hum"></span><b>CALENDAR</b><span data-k="wind"></span></div>
+  <div class="f3" data-h="f3e"></div>
 </section>
 
 <section class="view v11 sans" data-name="এলসিডি অ্যানালগ ঘড়ি">
@@ -378,7 +499,60 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
     <div class="r2"><span data-h="lt" style="--lh:calc(13*var(--u))"></span><span data-h="ls" style="--lh:calc(8*var(--u))"></span><span class="ap" data-k="ap"></span></div>
     <div class="calgrid en"></div>
     <div class="r3"><span data-h="lw" style="--lh:calc(7*var(--u))"></span><span>°C</span><span data-k="cond"></span></div>
+    <div class="f3" data-h="f3e"></div>
     <div class="lab">CALENDAR</div>
+  </div>
+</section>
+
+<section class="view v12 ep" data-name="ই-পেপার · ক্যালেন্ডার">
+  <div class="xhd"><span class="xt" data-k="ehms"></span><span class="xap" data-k="ap"></span><span class="xbar"></span><span class="xt" data-k="edl"></span></div>
+  <div class="xbd">
+    <div class="xcb"><div class="xmy" data-k="emy"></div><div class="calgrid en2"></div></div>
+    <div class="fe" data-h="fe"></div>
+  </div>
+  <div class="xwl" data-k="ewl"></div>
+</section>
+
+<section class="view v13 ep" data-name="ই-পেপার · এজেন্ডা">
+  <div class="xlf">
+    <div class="xtm"><span class="xt" data-k="ehms"></span><span class="xap" data-k="ap"></span></div>
+    <div class="xag" data-h="ag"></div>
+  </div>
+  <div class="fe" data-h="fe"></div>
+</section>
+
+<section class="view v14 ep" data-name="ই-পেপার · পিক্সেল অ্যানালগ">
+  <div class="analog" data-cls="a-ep" data-num="en"></div>
+  <div class="xrt">
+    <div class="xt" data-k="ehms"></div>
+    <div class="xd" data-k="edn"></div>
+    <div class="xw"><span class="wi" data-h="ico"></span><span data-k="ecw"></span> <span data-k="etp"></span></div>
+    <div class="fe" data-h="fe"></div>
+    <div class="xsun" data-k="esun"></div>
+  </div>
+</section>
+
+<section class="view v15 ep" data-name="ই-পেপার · চার্ট">
+  <div class="xlf">
+    <div class="xt" data-k="ehms"></div>
+    <div class="xap" data-k="ap"></div>
+    <div class="xwl" data-k="ewl"></div>
+  </div>
+  <div class="xcol">
+    <div class="xdt" data-k="edfull"></div>
+    <div class="xch c1" data-h="ch1"></div>
+    <div class="xch c2" data-h="ch2"></div>
+  </div>
+</section>
+
+<section class="view v16 ep" data-name="ই-পেপার · বড় ঘড়ি">
+  <div class="xtp">
+    <div class="xtm"><span class="xt" data-k="ehm"></span><span class="xap" data-k="ap"></span></div>
+    <div class="xwx"><span class="wi" data-h="ico"></span><div><div class="xwt" data-k="etp"></div><div class="xwc" data-k="ecw"></div></div></div>
+  </div>
+  <div class="xbt">
+    <div class="xdd" data-k="eds"></div>
+    <div class="fe" data-h="fe"></div>
   </div>
 </section>
 
@@ -453,16 +627,17 @@ document.querySelectorAll('.view').forEach(v => {
 });
 
 /* ---- templates ---- */
-const WBOX = `<div class="wicon" data-k="icon"></div>
+const WBOX = `<div class="wr"><div class="wicon" data-k="icon"></div>
 <div><div class="wtemp" data-k="temp"></div><div class="wcond">ঢাকা · <span data-k="cond"></span></div></div>
-<div><div class="wmeta"><span data-k="feels"></span> · <span data-k="hum"></span><br><span data-k="wind"></span><br><span data-k="hi"></span> · <span data-k="lo"></span></div><div class="wnote" data-k="upd"></div></div>`;
+<div><div class="wmeta"><span data-k="feels"></span> · <span data-k="hum"></span><br><span data-k="wind"></span><br><span data-k="hi"></span> · <span data-k="lo"></span></div><div class="wnote" data-k="upd"></div></div></div>
+<div class="f3" data-h="f3"></div>`;
 const PAGE = `<div class="head"><span class="month" data-k="mn"></span><span class="year" data-k="yr"></span></div>
 <div class="today"><b data-k="dn"></b><span><span data-k="wd"></span>, <span data-k="mn"></span></span></div><div class="calgrid"></div>`;
 document.querySelectorAll('.wbox').forEach(e => e.innerHTML = WBOX);
 document.querySelectorAll('.pagebox').forEach(e => e.innerHTML = PAGE);
 
 function analog(el){
-  const mod = !!el.dataset.mod; let s = `<svg class="an ${el.dataset.cls}" viewBox="0 0 200 200">`;
+  const mod = !!el.dataset.mod, enNum = el.dataset.num === 'en'; let s = `<svg class="an ${el.dataset.cls}" viewBox="0 0 200 200">`;
   s += mod ? '<circle class="face" cx="100" cy="100" r="97"/>' : '<circle class="bez" cx="100" cy="100" r="98"/><circle class="face" cx="100" cy="100" r="90"/>';
   const R = mod ? 90 : 84;
   for (let i = 0; i < 60; i++){
@@ -471,7 +646,7 @@ function analog(el){
   }
   if (!mod) for (let i = 1; i <= 12; i++){
     const a = i * Math.PI / 6;
-    s += `<text class="num" x="${100 + 66 * Math.sin(a)}" y="${100 - 66 * Math.cos(a)}" text-anchor="middle" dominant-baseline="central">${bn(i)}</text>`;
+    s += `<text class="num" x="${100 + 66 * Math.sin(a)}" y="${100 - 66 * Math.cos(a)}" text-anchor="middle" dominant-baseline="central">${enNum ? i : bn(i)}</text>`;
   }
   s += `<g class="hh"><line x1="100" y1="110" x2="100" y2="52"/></g><g class="mh"><line x1="100" y1="112" x2="100" y2="26"/></g>` +
        `<g class="sh"><line x1="100" y1="122" x2="100" y2="20"/><circle cx="100" cy="100" r="5"/></g><circle cx="100" cy="100" r="2.4" fill="#000"/></svg>`;
@@ -481,12 +656,17 @@ document.querySelectorAll('.view').forEach(v => v.insertAdjacentHTML('afterbegin
 document.querySelectorAll('.analog').forEach(analog);
 const rot = (cls, deg) => document.querySelectorAll('.' + cls).forEach(g => g.setAttribute('transform', `rotate(${deg} 100 100)`));
 
+/* ---- agenda for design 13 (edit here): 1 = Mon ... 5 = Fri ---- */
+const AGENDA = { 1: 'Team Meet (11am)', 3: 'Call Sam (3pm)', 5: 'Buy Coffee (5pm)' };
+
 /* ---- clock + calendar ---- */
-let lastDay = '', manualDim = null;
+let lastDay = '', manualDim = null, lastHr = -1;
 function tick(){
   const d = new Date(), h = d.getHours(), m = d.getMinutes(), s = d.getSeconds(), h12 = h % 12 || 12;
   const hh = bn(pad(h12)), mm = bn(pad(m)), ss = bn(pad(s));
   set('h1', hh[0]); set('h2', hh[1]); set('m1', mm[0]); set('m2', mm[1]); set('s1', ss[0]); set('s2', ss[1]);
+  set('ehm', h12 + ':' + pad(m)); set('ehms', h12 + ':' + pad(m) + ':' + pad(s));
+  if (h !== lastHr){ lastHr = h; drawCharts(); }
   set('hm', hh + ':' + mm); set('s', ss); seth('lt', lcd((h12 < 10 ? ' ' : '') + h12 + ':' + pad(m))); seth('ls', lcd(pad(s))); set('ap', h >= 12 ? 'PM' : 'AM'); set('hn', bn(h12)); set('mi', mm); set('eh', pad(h12)); set('em', pad(m)); set('es', ':' + pad(s));
   set('per', h >= 4 && h < 6 ? 'ভোর' : h >= 6 && h < 12 ? 'সকাল' : h >= 12 && h < 15 ? 'দুপুর' : h >= 15 && h < 17 ? 'বিকাল' : h >= 17 && h < 19 ? 'সন্ধ্যা' : 'রাত');
   rot('hh', (h % 12) * 30 + m * 0.5 + s / 120); rot('mh', m * 6 + s * 0.1); rot('sh', s * 6);
@@ -504,10 +684,17 @@ function drawDate(d){
     const wd = (first + day - 1) % 7;
     html += `<div class="${day === t ? 'now' : wd === 5 ? 'fri' : ''}">${bn(day)}</div>`;
   }
+  const w3 = EN_D[d.getDay()].slice(0, 3).toUpperCase(), m3 = EN_M[mo].slice(0, 3).toUpperCase();
+  set('edl', `${w3} ${t} ${m3} ${y}`); set('eds', `${w3} ${t} ${m3}`); set('emy', `${EN_M[mo].toUpperCase()} ${y}`);
+  set('edfull', `${EN_D[d.getDay()].toUpperCase()}, ${m3} ${t}, ${y}`); set('edn', `${pad(t)}/${pad(mo + 1)}/${String(y).slice(2)}`);
+  let h2 = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'].map(n => `<div class="dh">${n}</div>`).join('');
+  for (let i = 0; i < first; i++) h2 += '<div class="off">·</div>';
+  for (let day = 1; day <= count; day++) h2 += `<div class="${day === t ? 'now' : ''}">${day}</div>`;
+  seth('ag', [['M', 1], ['T', 2], ['W', 3], ['H', 4], ['F', 5]].map(([k, n]) => `<div class="${d.getDay() === n ? 'on' : ''}"><b>${k}:</b><span>${AGENDA[n] || ''}</span></div>`).join(''));
   let he = 'SMTWTFS'.split('').map((n, i) => `<div class="dh${i === 5 ? ' fri' : ''}">${n}</div>`).join('');
   for (let i = 0; i < first; i++) he += '<div class="off">·</div>';
   for (let day = 1; day <= count; day++) he += `<div class="${day === t ? 'now' : ''}">${day}</div>`;
-  document.querySelectorAll('.calgrid').forEach(g => g.innerHTML = g.classList.contains('en') ? he : html);
+  document.querySelectorAll('.calgrid').forEach(g => g.innerHTML = g.classList.contains('en2') ? h2 : g.classList.contains('en') ? he : html);
 }
 
 /* ---- weather (Open-Meteo, Dhaka) ---- */
@@ -516,8 +703,63 @@ const WX = c => c === 0 ? ['পরিষ্কার আকাশ','☀️'] : c
   (c >= 80 && c <= 82) ? ['ঝমঝম বৃষ্টি','🌧️'] : c >= 95 ? ['বজ্রসহ বৃষ্টি','⛈️'] : ['অজানা','🌡️'];
 const URL_WX = 'https://api.open-meteo.com/v1/forecast?latitude=23.8103&longitude=90.4125' +
   '&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day' +
-  '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=4&timezone=auto';
+  '&hourly=temperature_2m,precipitation_probability' +
+  '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&forecast_days=4&timezone=auto';
 const dg = n => bn(Math.round(n)) + '°';
+const WXE = c => c === 0 ? 'Clear' : c <= 2 ? 'Partly cloudy' : c === 3 ? 'Cloudy' : (c === 45 || c === 48) ? 'Fog' : (c >= 51 && c <= 57) ? 'Drizzle' :
+  (c >= 61 && c <= 67) ? 'Rainy' : (c >= 71 && c <= 77) ? 'Snow' : (c >= 80 && c <= 82) ? 'Showers' : c >= 95 ? 'Thunder' : 'Unknown';
+const hm12 = iso => { const [a, b] = iso.slice(11, 16).split(':'); return (a % 12 || 12) + ':' + b + ' ' + (a < 12 ? 'AM' : 'PM'); };
+let WXD = null;
+
+/* forecast items: lang 'bn' / 'en', days from..from+n-1 (0 = today) */
+function fcHTML(D, from, n, lang){
+  const en = lang === 'en'; let s = '';
+  for (let i = from; i < from + n && i < D.time.length; i++){
+    const dow = new Date(D.time[i] + 'T00:00:00').getDay(), c = D.weather_code[i];
+    const lab = en ? (i === 0 ? 'TODAY' : EN_D[dow].slice(0, 3).toUpperCase()) : (i === 0 ? 'আজ' : i === 1 ? 'কাল' : DSHORT[dow]);
+    const hi = en ? Math.round(D.temperature_2m_max[i]) + '°' : dg(D.temperature_2m_max[i]);
+    const lo = en ? Math.round(D.temperature_2m_min[i]) + '°' : dg(D.temperature_2m_min[i]);
+    s += `<div class="fq"><b class="q1">${lab}</b><span class="q2">${wsvg(c, 1)}</span><span class="q3">${hi}<em>${lo}</em></span><span class="q5">${en ? WXE(c) : WX(c)[0]}</span></div>`;
+  }
+  return s;
+}
+
+/* charts for design 15: next 12h temperature + 4-day high/low */
+function drawCharts(){
+  const w = WXD; if (!w || !w.hourly) return;
+  const H = w.hourly, D = w.daily, n0 = new Date();
+  let i0 = H.time.indexOf(`${n0.getFullYear()}-${pad(n0.getMonth() + 1)}-${pad(n0.getDate())}T${pad(n0.getHours())}:00`); if (i0 < 0) i0 = 0;
+  const pts = []; for (let k = 0; k < 6; k++){ const j = i0 + k * 2; if (j < H.time.length) pts.push({ h: +H.time[j].slice(11, 13), v: H.temperature_2m[j] }); }
+  if (pts.length > 1){
+    const mn = Math.min(...pts.map(p => p.v)), mx = Math.max(...pts.map(p => p.v)), sp = Math.max(mx - mn, 2);
+    const X = k => 9 + k * (94 / (pts.length - 1)), Y = v => 22 - (v - mn) / sp * 11;
+    let s = '<svg viewBox="0 0 112 32" fill="none" stroke="currentColor"><line x1="2" y1="24.4" x2="110" y2="24.4" stroke-width=".35"/>' +
+      `<polyline points="${pts.map((p, k) => X(k).toFixed(1) + ',' + Y(p.v).toFixed(1)).join(' ')}" stroke-width=".75" stroke-linejoin="round"/>`;
+    pts.forEach((p, k) => {
+      s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="1.2" fill="currentColor" stroke="none"/>` +
+        `<text x="${X(k).toFixed(1)}" y="${(Y(p.v) - 3).toFixed(1)}" font-size="3.7" text-anchor="middle" fill="currentColor" stroke="none">${Math.round(p.v)}°C</text>` +
+        `<text x="${X(k).toFixed(1)}" y="30" font-size="3.5" text-anchor="middle" fill="currentColor" stroke="none">${p.h % 12 || 12}${p.h < 12 ? 'am' : 'pm'}</text>`;
+    });
+    seth('ch1', s + '</svg>');
+  }
+  const n = Math.min(4, D.time.length), mxs = D.temperature_2m_max.slice(0, n), mns = D.temperature_2m_min.slice(0, n);
+  const lo = Math.floor(Math.min(...mns)) - 1, hi = Math.ceil(Math.max(...mxs)) + 1;
+  const X = k => 22 + k * (n > 1 ? 85 / (n - 1) : 0), Y = v => 26 - (v - lo) / (hi - lo) * 20;
+  let s = '<svg viewBox="0 0 112 42" fill="none" stroke="currentColor">';
+  [lo, (lo + hi) / 2, hi].forEach(t => { s += `<line x1="17" y1="${Y(t).toFixed(1)}" x2="110" y2="${Y(t).toFixed(1)}" stroke-width=".25" opacity=".45"/><text x="15" y="${(Y(t) + 1.1).toFixed(1)}" font-size="3.2" text-anchor="end" fill="currentColor" stroke="none">${Math.round(t)}°C</text>`; });
+  s += '<line x1="77" y1="1.6" x2="83" y2="1.6" stroke-width=".75"/><text x="84.5" y="2.8" font-size="2.8" fill="currentColor" stroke="none">MAX</text>' +
+       '<line x1="96" y1="1.6" x2="102" y2="1.6" stroke-width=".55" stroke-dasharray="1.4 1"/><text x="103.5" y="2.8" font-size="2.8" fill="currentColor" stroke="none">MIN</text>';
+  s += `<polyline points="${mxs.map((v, k) => X(k).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ')}" stroke-width=".8" stroke-linejoin="round"/>` +
+       `<polyline points="${mns.map((v, k) => X(k).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ')}" stroke-width=".55" stroke-dasharray="1.6 1.2" stroke-linejoin="round"/>`;
+  mxs.forEach((v, k) => { s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="1.2" fill="currentColor" stroke="none"/><text x="${X(k).toFixed(1)}" y="${(Y(v) - 2.2).toFixed(1)}" font-size="3.3" text-anchor="middle" fill="currentColor" stroke="none">${Math.round(v)}°</text>`; });
+  mns.forEach((v, k) => { s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="1" fill="var(--pp)" stroke-width=".5"/>`; });
+  for (let k = 0; k < n; k++){
+    const dow = new Date(D.time[k] + 'T00:00:00').getDay();
+    s += `<text x="${X(k).toFixed(1)}" y="31.6" font-size="3.5" text-anchor="middle" fill="currentColor" stroke="none">${k === 0 ? 'TODAY' : EN_D[dow].slice(0, 3).toUpperCase()}</text>` +
+         wsvg(D.weather_code[k], 1).replace('<svg ', `<svg x="${(X(k) - 3.4).toFixed(1)}" y="33.4" width="6.8" height="6.8" `);
+  }
+  seth('ch2', s + '</svg>');
+}
 
 function showWeather(w, stale){
   const c = w.current, D = w.daily;
@@ -536,6 +778,9 @@ function showWeather(w, stale){
          `<span>${dg(D.temperature_2m_max[i])}</span><span class="fh">${dg(D.temperature_2m_min[i])}</span></div>`;
   }
   $('fc').innerHTML = f;
+  const eng = WXE(c.weather_code), tr = Math.round(c.temperature_2m);
+  set('ecw', eng); set('etp', tr + '°'); set('ewl', `WEATHER: ${eng}, ${tr}°C, ${D.precipitation_probability_max[0] ?? 0}% RAIN`);
+  if (D.sunrise) set('esun', `Sunrise ${hm12(D.sunrise[0])} · Sunset ${hm12(D.sunset[0])}`);
   seth('ico', wsvg(c.weather_code, c.is_day)); seth('lw', lcd(String(Math.round(c.temperature_2m))));
   let g = '';
   for (let i = 0; i < Math.min(4, D.time.length); i++){
@@ -544,15 +789,17 @@ function showWeather(w, stale){
          `<div class="fh9"><b>${dg(D.temperature_2m_max[i])}</b><span>${dg(D.temperature_2m_min[i])}</span></div></div>`;
   }
   $('fc9').innerHTML = g;
+  seth('f3', fcHTML(D, 1, 3, 'bn')); seth('f3e', fcHTML(D, 1, 3, 'en')); seth('fe', fcHTML(D, 0, 4, 'en'));
+  WXD = w; drawCharts();
 }
 async function loadWeather(){
   try{
     const r = await fetch(URL_WX); if (!r.ok) throw 0;
     const w = await r.json(); w.savedAt = Date.now();
-    try { localStorage.setItem('wx2', JSON.stringify(w)); } catch (e) {}
+    try { localStorage.setItem('wx3', JSON.stringify(w)); } catch (e) {}
     showWeather(w, false);
   }catch(e){
-    let w = null; try { w = JSON.parse(localStorage.getItem('wx2')); } catch (e2) {}
+    let w = null; try { w = JSON.parse(localStorage.getItem('wx3')); } catch (e2) {}
     if (w) showWeather(w, true); else set('cond', 'ওয়েদার পাওয়া যায়নি');
   }
 }

@@ -414,6 +414,86 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .v16 .q1{font-size:calc(4.6*var(--u))}
 .v16 .q3{font-size:calc(5.4*var(--u))}
 
+
+/* ===== battery graph designs: v17 wood/paper, v18 e-paper, v19 LCD ===== */
+.bnone{display:flex;align-items:center;justify-content:center;text-align:center;opacity:.7;font-size:calc(3.4*var(--u));height:100%;min-height:calc(14*var(--u))}
+[data-v=g]{--mc:#7cc27a}[data-v=y]{--mc:#e3b341}[data-v=r]{--mc:#e5604d}[data-v=c]{--mc:#5aa9e6}[data-v=n]{--mc:#9a9a90}
+.bmeter{position:relative;height:calc(1.5*var(--u));border-radius:calc(1*var(--u));overflow:hidden;background:rgba(0,0,0,.35);border:calc(.2*var(--u)) solid rgba(255,255,255,.25)}
+.bmeter i{position:absolute;left:0;top:0;bottom:0;width:calc(var(--m,0)*1%);background:var(--mc,#7cc27a)}
+.bgl{position:relative;border:calc(.5*var(--u)) solid currentColor;border-radius:calc(1*var(--u));height:calc(5*var(--u));padding:calc(.4*var(--u))}
+.bgl::after{content:"";position:absolute;right:calc(-1.5*var(--u));top:calc(1.2*var(--u));width:calc(.9*var(--u));height:calc(1.8*var(--u));background:currentColor;border-radius:0 calc(.4*var(--u)) calc(.4*var(--u)) 0}
+.bgl i{display:block;height:100%;width:calc(var(--lv,0)*1%);background:currentColor;border-radius:calc(.4*var(--u))}
+
+/* v17 */
+.v17{--brass:#c19a4b;--brass-d:#7d5f26;--glow:#f3dca0;--ink:#2b2117;--red:#9a2c1f;--paper2:#dccfa9;
+  background:repeating-linear-gradient(92deg,rgba(255,255,255,.025) 0 2px,transparent 2px 7px),linear-gradient(#33200f,#24150c);color:var(--ink)}
+.v17 .batt{--bc:#c19a4b;--bf:#f3dca0;--bt:#f3dca0}
+.v17.on>.fit{display:grid;grid-template-columns:auto 1fr;grid-column-gap:calc(3*var(--w));padding:calc(5.8*var(--u)) calc(3*var(--w)) calc(4*var(--u));align-items:center}
+.v17 .rcol{height:100%}
+.v17 .page{flex:1.25}
+.bph{display:flex;justify-content:space-between;align-items:baseline;border-bottom:calc(.3*var(--u)) solid rgba(43,33,23,.5);padding-bottom:calc(.6*var(--u));margin-bottom:calc(.6*var(--u))}
+.bph b{font-size:calc(3.6*var(--u));font-weight:800}
+.bph span{font-size:calc(2.5*var(--u));color:#6a5a40}
+.bpt{font-size:calc(2.5*var(--u));color:#6a5a40;margin:calc(.4*var(--u)) 0 0}
+.v17 .bstat{flex:.55;justify-content:space-between}
+.bs1{display:flex;align-items:center}
+.bs1>*+*{margin-left:calc(2*var(--w))}
+.bs1 .bsub{flex:1;min-width:0}
+.bbig{font-size:calc(10*var(--u));line-height:1;color:var(--glow);font-weight:800;white-space:nowrap}
+.bvt{font-size:calc(3.8*var(--u));font-weight:800;margin-bottom:calc(.7*var(--u))}
+.bs2{display:grid;grid-template-columns:repeat(3,1fr);grid-column-gap:calc(1.4*var(--w))}
+.bs2 small{display:block;font-size:calc(2.6*var(--u));opacity:.8}
+.bs2 b{font-size:calc(3.4*var(--u));font-weight:800;color:var(--glow);white-space:nowrap}
+
+/* v18 */
+.v18{--pp:#c9cdc8;background:var(--grain),var(--pp);color:#141414}
+.v18 .batt{--bc:#141414;--bf:#141414;--bt:#141414}
+.v18.on>.fit{display:grid;padding:calc(6*var(--u)) calc(2.6*var(--w)) calc(2.4*var(--u))}
+.b18{display:grid;grid-template-rows:auto 1fr auto;grid-row-gap:calc(1.6*var(--u));min-height:0}
+.b18top{display:grid;grid-template-columns:1fr 1.1fr 1.2fr;grid-column-gap:calc(2*var(--w));height:calc(30*var(--u))}
+.v18 .sec{border-left:calc(.7*var(--u)) solid #6f736e;padding-left:calc(1.4*var(--w));min-height:0;display:flex;flex-direction:column;justify-content:center}
+.v18 .blbig{font-size:calc(16*var(--u));line-height:1;font-weight:800;white-space:nowrap}
+.v18 .bgl{width:calc(40*var(--u));margin:calc(1.2*var(--u)) 0 calc(1.4*var(--u))}
+.v18 .bvt{font-size:calc(4*var(--u));margin:0}
+.v18 .tm9{display:flex;align-items:flex-end;line-height:1}
+.v18 .tm9 [data-k=hm]{font-size:calc(21*var(--u))}
+.v18 .ss9{font-size:calc(9*var(--u));padding-bottom:calc(1.6*var(--u));margin-left:calc(1*var(--w))}
+.v18 .dt9{font-size:calc(3.8*var(--u));margin-top:calc(1.2*var(--u))}
+.brow{display:flex;justify-content:space-between;align-items:baseline;font-size:calc(3.3*var(--u));line-height:1.55;border-bottom:calc(.2*var(--u)) dotted #6f736e}
+.brow span{opacity:.75}.brow b{font-weight:800}
+.v18 .bmeter{margin-top:calc(1.2*var(--u));background:rgba(0,0,0,.12);border-color:#6f736e}
+.v18 .bmeter i{background:#141414}
+.b18mid{display:grid;grid-template-columns:calc(134*var(--u)) calc(68*var(--u));grid-column-gap:calc(3.7*var(--u));min-height:0}
+.bpn{border:calc(.3*var(--u)) solid #6f736e;border-radius:calc(.8*var(--u));background:rgba(255,255,255,.18);padding:calc(.7*var(--u)) calc(1*var(--u));min-height:0}
+.bpn .pt{font-size:calc(3*var(--u));font-weight:800;height:calc(4*var(--u));line-height:calc(3.6*var(--u))}
+.bfoot{display:flex;justify-content:space-between;font-size:calc(2.9*var(--u));background:#b6bab5;border-radius:calc(.8*var(--u));padding:calc(.7*var(--u)) calc(1.2*var(--w))}
+
+/* v19 */
+.v19{--pp:#b9c3a6;background:radial-gradient(ellipse at 50% 40%,#c4cdb1,#aab496);color:#1b1f13}
+.v19 .batt{--bc:#1b1f13;--bf:#1b1f13;--bt:#1b1f13}
+.v19.on>.fit{display:grid;padding:calc(6*var(--u)) calc(3*var(--w)) calc(2.4*var(--u))}
+.l19{display:grid;grid-template-columns:calc(84*var(--u)) 1fr;grid-column-gap:calc(2*var(--w));min-height:0}
+.lc1{display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+.lc1 .lw{display:flex;align-items:center}
+.lc1 .lw>*+*{margin-left:calc(2*var(--w))}
+.v19 .ewd{font-size:calc(6.4*var(--u));font-weight:800;letter-spacing:.12em;line-height:1}
+.lc1 .lt19{display:flex;align-items:flex-end}
+.lc1 .lt19>*+*{margin-left:calc(1.2*var(--w))}
+.lc1 .lt19 .ap{font-size:calc(3.6*var(--u));font-weight:800;display:block}
+.lc1 .lb19{display:flex;align-items:flex-end}
+.lc1 .lb19>*+*{margin-left:calc(1.2*var(--w))}
+.lc1 .lbl{font-size:calc(2.8*var(--u));font-weight:800;letter-spacing:.3em;padding-bottom:calc(1*var(--u))}
+.lc1 .bpc{font-size:calc(5*var(--u));font-weight:800;padding-bottom:calc(.4*var(--u))}
+.v19 .bgl{width:calc(72*var(--u));color:#1b1f13}
+.lrows{font-family:'Courier New',monospace;font-weight:700}
+.lrows .brow{font-size:calc(3*var(--u));border-bottom:calc(.2*var(--u)) solid rgba(27,31,19,.4);line-height:1.6}
+.lrows .brow span{opacity:.8;letter-spacing:.06em}
+.v19 .bmeter{margin-top:calc(1.2*var(--u));background:rgba(27,31,19,.08);border:calc(.3*var(--u)) solid #1b1f13;border-radius:0}
+.v19 .bmeter i{background:repeating-linear-gradient(90deg,#1b1f13 0 calc(1.3*var(--u)),transparent calc(1.3*var(--u)) calc(1.8*var(--u)))}
+.lc2{display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+.lbx{border:calc(.3*var(--u)) solid #1b1f13;padding:calc(.4*var(--u)) calc(.5*var(--u));font-family:'Courier New',monospace;font-weight:700}
+.lbx .pt{font-size:calc(2.5*var(--u));letter-spacing:.14em;height:calc(3.2*var(--u));line-height:calc(3*var(--u))}
+
 /* ===== old-browser fallbacks (switched on by script) ===== */
 .nfg .left>*+*{margin-top:calc(2.6*var(--u))}
 .nfg .rcol>*+*{margin-top:calc(2.6*var(--u))}
@@ -641,6 +721,69 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
   </div>
 </section>
 
+<section class="view v17 a-classic" data-name="ব্যাটারি গ্রাফ · ক্লাসিক" data-bat="1">
+  <div class="analog" data-cls="a-classic"></div>
+  <div class="rcol">
+    <div class="page bwrap">
+      <div class="bph"><b>ব্যাটারি খরচের গ্রাফ</b><span><span data-k="wd"></span> · <span data-k="dl"></span></span></div>
+      <div data-h="bc17"></div>
+      <div class="bpt">প্রতি ঘণ্টায় কত % খরচ হয়েছে</div>
+      <div data-h="bb17"></div>
+    </div>
+    <div class="weather bstat bwrap">
+      <div class="bs1"><div class="bbig" data-k="bl_bn"></div><div class="bsub"><div class="bvt" data-k="bst_bn"></div><div class="bmeter"><i></i></div></div></div>
+      <div class="bs2">
+        <div><small>খরচের হার</small><b data-k="brt_bn"></b></div>
+        <div><small data-k="blab_bn"></small><b data-k="beta_bn"></b></div>
+        <div><small>১২ ঘণ্টায় খরচ</small><b data-k="bused_bn"></b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view v18 sans" data-name="ব্যাটারি গ্রাফ · ই-পেপার" data-bat="1">
+  <div class="b18 bwrap">
+    <div class="b18top">
+      <div class="sec"><div class="blbig" data-k="bl_bn"></div><div class="bgl"><i></i></div><div class="bvt" data-k="bst_bn"></div></div>
+      <div class="sec"><div class="tm9"><span data-k="hm"></span><span class="ss9" data-k="s"></span></div><div class="dt9"><span data-k="wd"></span> · <span data-k="dl"></span></div></div>
+      <div class="sec">
+        <div class="brow"><span>খরচের হার</span><b data-k="brt_bn"></b></div>
+        <div class="brow"><span data-k="blab_bn"></span><b data-k="beta_bn"></b></div>
+        <div class="brow"><span>১২ ঘণ্টায় খরচ</span><b data-k="bused_bn"></b></div>
+        <div class="brow"><span>সর্বোচ্চ খরচের সময়</span><b data-k="bpeak_bn"></b></div>
+        <div class="bmeter"><i></i></div>
+      </div>
+    </div>
+    <div class="b18mid">
+      <div class="bpn"><div class="pt">ব্যাটারি লেভেল · গত ১২ ঘণ্টা ও পূর্বাভাস</div><div data-h="bc18"></div></div>
+      <div class="bpn"><div class="pt">প্রতি ঘণ্টায় খরচ (%)</div><div data-h="bb18"></div></div>
+    </div>
+    <div class="bfoot"><span>ব্যাটারি বিশ্লেষণ</span><span data-k="bnote_bn"></span></div>
+  </div>
+</section>
+
+<section class="view v19 sans" data-name="ব্যাটারি গ্রাফ · এলসিডি" data-bat="1">
+  <div class="l19 bwrap">
+    <div class="lc1">
+      <div class="lw"><span class="ewd" data-k="ewd"></span><span data-h="ld" style="--lh:calc(7*var(--u))"></span></div>
+      <div class="lt19"><span data-h="lt" style="--lh:calc(21*var(--u))"></span><span><span data-h="ls" style="--lh:calc(9*var(--u))"></span><span class="ap" data-k="ap"></span></span></div>
+      <div class="lb19"><span class="lbl">BATTERY</span><span data-h="lbp" style="--lh:calc(14*var(--u))"></span><span class="bpc">%</span></div>
+      <div class="bgl"><i></i></div>
+      <div class="lrows">
+        <div class="brow"><span>STATUS</span><b data-k="bst_en"></b></div>
+        <div class="brow"><span>DRAIN</span><b data-k="brt_en"></b></div>
+        <div class="brow"><span data-k="blab_en"></span><b data-k="beta_en"></b></div>
+        <div class="brow"><span>USED 12H</span><b data-k="bused_en"></b></div>
+        <div class="bmeter"><i></i></div>
+      </div>
+    </div>
+    <div class="lc2">
+      <div class="lbx" style="height:calc(53*var(--u))"><div class="pt">BATTERY LEVEL / 12H + FORECAST</div><div data-h="bc19"></div></div>
+      <div class="lbx" style="height:calc(34*var(--u))"><div class="pt">USED PER HOUR (%)</div><div data-h="bb19"></div></div>
+    </div>
+  </div>
+</section>
+
 </div>
 
 <div id="dimmer"></div>
@@ -767,6 +910,7 @@ function tick(){
   set('h1', hh[0]); set('h2', hh[1]); set('m1', mm[0]); set('m2', mm[1]); set('s1', ss[0]); set('s2', ss[1]);
   set('ehm', h12 + ':' + pad(m)); set('ehms', h12 + ':' + pad(m) + ':' + pad(s));
   if (h !== lastHr){ lastHr = h; drawCharts(); }
+  if (s === 0) battTick();
   set('hm', hh + ':' + mm); set('s', ss); seth('lt', lcd((h12 < 10 ? ' ' : '') + h12 + ':' + pad(m))); seth('ls', lcd(pad(s))); set('ap', h >= 12 ? 'PM' : 'AM'); set('hn', bn(h12)); set('mi', mm); set('eh', pad(h12)); set('em', pad(m)); set('es', ':' + pad(s));
   set('per', h >= 4 && h < 6 ? 'ভোর' : h >= 6 && h < 12 ? 'সকাল' : h >= 12 && h < 15 ? 'দুপুর' : h >= 15 && h < 17 ? 'বিকাল' : h >= 17 && h < 19 ? 'সন্ধ্যা' : 'রাত');
   rot('hh', (h % 12) * 30 + m * 0.5 + s / 120); rot('mh', m * 6 + s * 0.1); rot('sh', s * 6);
@@ -974,6 +1118,7 @@ function go(n){
   const was = bloodOn; bloodOn = !!views[cur].dataset.blood;
   if (bloodOn && !was){ lastT = performance.now(); getRects(); requestAnimationFrame(bloodLoop); }
   if (!bloodOn){ drips = []; rings = []; jets = []; }
+  if (views[cur].dataset.bat) drawBat();
   $('bN').textContent = bn(cur + 1) + '/' + bn(views.length) + ' ' + views[cur].dataset.name;
   try { localStorage.setItem('view', cur); } catch (e) {}
 }
@@ -1050,14 +1195,190 @@ function bloodLoop(ts){
   }
 }
 
+/* ===== battery history + analysis for designs 17-19 ===== */
+var BH = [], BAT = null, BHKEY = 'bh1', BGAP = 45 * 60000;
+try { BH = JSON.parse(localStorage.getItem(BHKEY)) || []; } catch (e) { BH = []; }
+function bhRec(){
+  if (!BAT) return;
+  var n = Date.now(), L = BH[BH.length - 1], c = BAT.chg ? 1 : 0;
+  if (!L || L[1] !== BAT.level || L[2] !== c || n - L[0] > 5 * 60000){
+    BH.push([n, BAT.level, c]);
+    var cut = n - 48 * 3600000; while (BH.length && BH[0][0] < cut) BH.shift();
+    if (BH.length > 1500) BH.splice(0, BH.length - 1500);
+    try { localStorage.setItem(BHKEY, JSON.stringify(BH)); } catch (e) {}
+  }
+}
+function bFmtH(h, L){
+  var m = Math.round(h * 60), hh = Math.floor(m / 60), mm = m % 60;
+  if (L === 'en') return hh ? hh + 'H ' + pad(mm) + 'M' : mm + 'M';
+  return hh ? bn(hh) + ' ঘণ্টা ' + bn(mm) + ' মি' : bn(mm) + ' মিনিট';
+}
+function bHour(ms, L){ var h = new Date(ms).getHours(); return L === 'en' ? (h % 12 || 12) + (h < 12 ? 'AM' : 'PM') : bn(h % 12 || 12) + 'টা'; }
+function bAnalyze(){
+  if (!BAT) return null;
+  var now = Date.now(), lv = BAT.level, chg = BAT.chg ? 1 : 0, i, a, b;
+  var P = BH.filter(function(p){ return p[0] >= now - 12 * 3600000; });
+  if (!P.length || now - P[P.length - 1][0] > 1000) P.push([now, lv, chg]);
+  i = P.length - 1; var t0 = P[i][0], l0 = P[i][1];
+  while (i > 0){
+    a = P[i - 1]; b = P[i];
+    if (b[0] - a[0] > BGAP || a[2] !== chg || now - a[0] > 3 * 3600000) break;
+    i--; t0 = P[i][0]; l0 = P[i][1];
+  }
+  var span = (now - t0) / 3600000, d = chg ? lv - l0 : l0 - lv, rate = null;
+  if (span >= 0.2){ if (d >= 1) rate = d / span; else if (span >= 1) rate = 0; }
+  var eta = null;
+  if (chg){ if (lv >= 100) eta = 0; else if (rate > 0) eta = (100 - lv) / rate; else if (isFinite(BAT.ct) && BAT.ct > 0) eta = BAT.ct / 3600; }
+  else { if (rate > 0) eta = lv / rate; else if (isFinite(BAT.dt) && BAT.dt > 0) eta = BAT.dt / 3600; }
+  if (eta !== null) eta = Math.min(eta, 99);
+  var hs = new Date(now); hs.setMinutes(0, 0, 0); hs = hs.getTime();
+  var bars = [], k; for (k = 0; k < 12; k++) bars.push({ t: hs - (11 - k) * 3600000, used: 0, gain: 0, has: false });
+  for (var j = 1; j < P.length; j++){
+    a = P[j - 1]; b = P[j]; if (b[0] - a[0] > BGAP) continue;
+    var bi = Math.floor((b[0] - (hs - 11 * 3600000)) / 3600000); if (bi < 0 || bi > 11) continue;
+    bars[bi].has = true; var dl = b[1] - a[1];
+    if (b[2] === 0 && a[2] === 0 && dl < 0) bars[bi].used += -dl; else if (b[2] === 1 && dl > 0) bars[bi].gain += dl;
+  }
+  var used = 0, peak = null, cnt = 0; bars.forEach(function(x){ used += x.used; if (x.has) cnt++; if (x.used >= 2 && (!peak || x.used > peak.used)) peak = x; });
+  return { P: P, lv: lv, chg: chg, rate: rate, eta: eta, bars: bars, used: used, cnt: cnt, avg: cnt ? used / cnt : 0, peak: peak, first: P[0][0], now: now };
+}
+function bTexts(A, L){
+  var en = L === 'en', f = function(n){ return en ? String(n) : bn(String(n)); }, r1 = function(n){ return (Math.round(n * 10) / 10).toFixed(1); };
+  var T = { bl: f(A.lv) + '%', v: 'n', meter: 0 }, u = en ? '%/H' : '%/ঘণ্টা';
+  if (A.chg){
+    T.v = 'c'; T.st = en ? 'CHARGING' : 'চার্জ হচ্ছে ⚡'; T.lab = en ? 'TO FULL' : '১০০% হতে';
+    T.rt = A.rate > 0 ? '+' + f(r1(A.rate)) + u : '—'; T.meter = A.rate > 0 ? Math.min(100, A.rate / 30 * 100) : 0;
+    T.eta = A.lv >= 100 ? (en ? 'FULL' : 'পূর্ণ') : A.eta !== null ? bFmtH(A.eta, L) : '—';
+  } else {
+    T.lab = en ? 'TIME LEFT' : 'চলবে আরও';
+    T.eta = A.eta !== null ? bFmtH(A.eta, L) : '—';
+    if (A.rate === null){ T.st = en ? 'COLLECTING DATA' : 'তথ্য জমা হচ্ছে'; T.rt = '—'; }
+    else {
+      T.v = A.rate < 2.5 ? 'g' : A.rate < 6 ? 'y' : 'r';
+      T.st = en ? { g: 'LOW DRAIN', y: 'NORMAL', r: 'HIGH DRAIN' }[T.v] : { g: 'কম খরচ', y: 'স্বাভাবিক খরচ', r: 'বেশি খরচ' }[T.v];
+      T.rt = A.rate === 0 ? (en ? 'STABLE' : 'প্রায় স্থির') : '−' + f(r1(A.rate)) + u; T.meter = Math.min(100, A.rate / 12 * 100);
+    }
+  }
+  T.used = A.cnt ? f(Math.round(A.used)) + '%' : '—';
+  T.peak = A.peak ? bHour(A.peak.t, L) + '–' + bHour(A.peak.t + 3600000, L) + ' (' + f(Math.round(A.peak.used)) + '%)' : '—';
+  T.note = A.chg ? (en ? '' : 'চার্জের সময় খরচ গণনা হয় না') : (A.cnt ? (en ? '' : 'গড় ' + f(r1(A.avg)) + '% প্রতি ঘণ্টায়') : 'কিছুক্ষণ চালু রাখলে গ্রাফ পূর্ণ হবে');
+  return T;
+}
+function bChart(A, o){
+  var W = o.W, H = o.H, L = o.lang, en = L === 'en', pl = en ? 8 : 9, pr = 2.5, pt = 5, pb = 6.5, fs = o.fs, P = A.P, now = A.now, i;
+  var span = Math.min(12 * 3600000, Math.max(3600000, now - A.first)), t0 = now - span, fut = span * .22, t1 = now + fut;
+  var minL = 100, maxL = 0; P.forEach(function(p){ minL = Math.min(minL, p[1]); maxL = Math.max(maxL, p[1]); });
+  var proj = null; if (A.rate > 0) proj = A.chg ? Math.min(100, A.lv + A.rate * fut / 3.6e6) : Math.max(0, A.lv - A.rate * fut / 3.6e6);
+  if (proj !== null){ minL = Math.min(minL, proj); maxL = Math.max(maxL, proj); }
+  var lo = Math.max(0, Math.floor((minL - 6) / 10) * 10), hi = Math.min(100, Math.ceil((maxL + 6) / 10) * 10);
+  if (hi - lo < 30){ if (lo > 0) lo = Math.max(0, hi - 30); else hi = Math.min(100, lo + 30); }
+  var X = function(t){ return pl + (t - t0) / (t1 - t0) * (W - pl - pr); }, Y = function(v){ return pt + (hi - v) / (hi - lo) * (H - pt - pb); };
+  var num = function(n){ return en ? String(n) : bn(String(n)); }, base = Y(lo);
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:calc(' + W + '*var(--u));height:calc(' + H + '*var(--u))" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+  if (lo < 20) s += '<rect x="' + pl + '" y="' + Y(20).toFixed(1) + '" width="' + (W - pl - pr) + '" height="' + (base - Y(20)).toFixed(1) + '" fill="' + o.low + '" opacity=".13"/>';
+  var step = (hi - lo) <= 40 ? 10 : 20;
+  for (var v = Math.ceil(lo / step) * step; v <= hi; v += step){
+    s += '<line x1="' + pl + '" y1="' + Y(v).toFixed(1) + '" x2="' + (W - pr) + '" y2="' + Y(v).toFixed(1) + '" stroke="' + o.grid + '" stroke-width=".25"/>' +
+         '<text x="' + (pl - 1.2) + '" y="' + (Y(v) + fs * .35).toFixed(1) + '" font-size="' + fs + '" text-anchor="end" fill="' + o.ink2 + '">' + num(v) + '%</text>';
+  }
+  var sm = span > 6 * 3600000 ? 7200000 : span > 2 * 3600000 ? 3600000 : 1800000, off = new Date().getTimezoneOffset() * 60000;
+  for (var t = Math.ceil((t0 - off) / sm) * sm + off; t <= t1 - sm * .3; t += sm){
+    var lab = sm >= 3600000 ? bHour(t, L) : (function(d){ return num(d.getHours() % 12 || 12) + ':' + num(pad(d.getMinutes())); })(new Date(t));
+    s += '<line x1="' + X(t).toFixed(1) + '" y1="' + base.toFixed(1) + '" x2="' + X(t).toFixed(1) + '" y2="' + (base + 1).toFixed(1) + '" stroke="' + o.ink2 + '" stroke-width=".3"/>' +
+         '<text x="' + X(t).toFixed(1) + '" y="' + (base + 1.6 + fs).toFixed(1) + '" font-size="' + fs + '" text-anchor="middle" fill="' + o.ink2 + '">' + lab + '</text>';
+  }
+  s += '<line x1="' + pl + '" y1="' + base.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + base.toFixed(1) + '" stroke="' + o.ink + '" stroke-width=".45"/><line x1="' + pl + '" y1="' + pt + '" x2="' + pl + '" y2="' + base.toFixed(1) + '" stroke="' + o.ink + '" stroke-width=".3"/>';
+  var runs = [], cur = [P[0]]; for (i = 1; i < P.length; i++){ if (P[i][0] - P[i - 1][0] > BGAP){ runs.push(cur); cur = [P[i]]; } else cur.push(P[i]); } runs.push(cur);
+  var pt2 = function(p){ return X(p[0]).toFixed(1) + ',' + Y(p[1]).toFixed(1); };
+  runs.forEach(function(run, ri){
+    if (run.length > 1){
+      s += '<polygon points="' + run.map(pt2).join(' ') + ' ' + X(run[run.length - 1][0]).toFixed(1) + ',' + base.toFixed(1) + ' ' + X(run[0][0]).toFixed(1) + ',' + base.toFixed(1) + '" fill="' + o.fill + '" stroke="none"/>';
+      var cs = null, pts = [], out = [];
+      for (var q = 1; q < run.length; q++){ var st = run[q][2]; if (st !== cs){ if (pts.length > 1) out.push([cs, pts]); cs = st; pts = [run[q - 1]]; } pts.push(run[q]); }
+      if (pts.length > 1) out.push([cs, pts]);
+      out.forEach(function(g){
+        var pp = g[1].map(pt2).join(' ');
+        if (g[0] && o.band) s += '<polyline points="' + pp + '" stroke="' + o.band + '" stroke-width="3" opacity=".55"/>';
+        s += '<polyline points="' + pp + '" stroke="' + (g[0] ? o.chg : o.line) + '" stroke-width="' + (g[0] ? 1.1 : .9) + '"/>';
+      });
+    } else s += '<circle cx="' + X(run[0][0]).toFixed(1) + '" cy="' + Y(run[0][1]).toFixed(1) + '" r=".7" fill="' + o.line + '"/>';
+    if (ri < runs.length - 1) s += '<line x1="' + pt2(run[run.length - 1]).replace(',', '" y1="') + '" x2="' + pt2(runs[ri + 1][0]).replace(',', '" y2="') + '" stroke="' + o.ink2 + '" stroke-width=".4" stroke-dasharray="1 1.2" opacity=".7"/>';
+  });
+  var nx = X(now), ny = Y(A.lv);
+  s += '<line x1="' + nx.toFixed(1) + '" y1="' + pt + '" x2="' + nx.toFixed(1) + '" y2="' + base.toFixed(1) + '" stroke="' + o.ink2 + '" stroke-width=".35" stroke-dasharray="1.2 1"/>' +
+       '<text x="' + nx.toFixed(1) + '" y="' + (pt - 1.2) + '" font-size="' + fs + '" text-anchor="middle" font-weight="700" fill="' + o.ink + '">' + (en ? 'NOW' : 'এখন') + '</text>';
+  if (proj !== null){
+    s += '<line x1="' + nx.toFixed(1) + '" y1="' + ny.toFixed(1) + '" x2="' + X(t1).toFixed(1) + '" y2="' + Y(proj).toFixed(1) + '" stroke="' + (A.chg ? o.chg : o.proj) + '" stroke-width=".9" stroke-dasharray="1.6 1.2"/>' +
+         '<text x="' + (W - pr - .5) + '" y="' + (Y(proj) + (A.chg ? -1.6 : fs + 1.2)).toFixed(1) + '" font-size="' + (fs * .9).toFixed(1) + '" text-anchor="end" fill="' + o.ink2 + '">' + (en ? 'EST' : 'অনুমান') + '</text>';
+  }
+  s += '<circle cx="' + nx.toFixed(1) + '" cy="' + ny.toFixed(1) + '" r="1.9" fill="' + o.pp + '" stroke="' + o.ink + '" stroke-width=".7"/><circle cx="' + nx.toFixed(1) + '" cy="' + ny.toFixed(1) + '" r=".8" fill="' + o.ink + '"/>';
+  var ly = ny - 3.2 < pt + fs ? ny + fs + 1.8 : ny - 3;
+  s += '<text x="' + (nx - 2.4).toFixed(1) + '" y="' + ly.toFixed(1) + '" font-size="' + (fs * 1.25).toFixed(1) + '" text-anchor="end" font-weight="800" fill="' + o.ink + '">' + num(A.lv) + '%</text>';
+  if (A.first > now - 120000) s += '<text x="' + ((pl + W - pr) / 2) + '" y="' + ((pt + base) / 2) + '" font-size="' + (fs * 1.1) + '" text-anchor="middle" fill="' + o.ink2 + '">' + (en ? 'COLLECTING DATA…' : 'তথ্য জমা হচ্ছে… কিছুক্ষণ পর গ্রাফ ফুটে উঠবে') + '</text>';
+  return s + '</svg>';
+}
+function bBars(A, o){
+  var W = o.W, H = o.H, L = o.lang, en = L === 'en', fs = o.fs, pl = 1.5, pr = 1.5, pt = fs + 2.2, pb = fs + 2.4, B = A.bars, n = 12, sw = (W - pl - pr) / n, bw = sw * .66, mx = 4;
+  B.forEach(function(b){ mx = Math.max(mx, b.used, b.gain); }); mx = Math.ceil(mx / 2) * 2;
+  var base = H - pb, Y = function(v){ return base - v / mx * (base - pt); }, num = function(x){ return en ? String(x) : bn(String(x)); };
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:calc(' + W + '*var(--u));height:calc(' + H + '*var(--u))" fill="none">' +
+    '<line x1="' + pl + '" y1="' + base.toFixed(1) + '" x2="' + (W - pr) + '" y2="' + base.toFixed(1) + '" stroke="' + o.ink + '" stroke-width=".45"/>' +
+    '<line x1="' + pl + '" y1="' + Y(mx / 2).toFixed(1) + '" x2="' + (W - pr) + '" y2="' + Y(mx / 2).toFixed(1) + '" stroke="' + o.grid + '" stroke-width=".25"/>';
+  if (A.avg > 0.4) s += '<line x1="' + pl + '" y1="' + Y(A.avg).toFixed(1) + '" x2="' + (W - pr) + '" y2="' + Y(A.avg).toFixed(1) + '" stroke="' + o.proj + '" stroke-width=".5" stroke-dasharray="1.6 1.2"/>' +
+    '<text x="' + (W - pr) + '" y="' + (Y(A.avg) - .9).toFixed(1) + '" font-size="' + (fs * .9).toFixed(1) + '" text-anchor="end" fill="' + o.proj + '">' + (en ? 'AVG ' : 'গড় ') + num((Math.round(A.avg * 10) / 10).toFixed(1)) + '</text>';
+  B.forEach(function(b, k){
+    var x = pl + k * sw + (sw - bw) / 2, cx = x + bw / 2;
+    if (!b.has) s += '<circle cx="' + cx.toFixed(1) + '" cy="' + (base - .8).toFixed(1) + '" r=".5" fill="' + o.ink2 + '"/>';
+    else if (b.gain > 0 && b.used === 0){
+      s += '<rect x="' + x.toFixed(1) + '" y="' + Y(b.gain).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + (base - Y(b.gain)).toFixed(1) + '" fill="none" stroke="' + o.chg + '" stroke-width=".7" stroke-dasharray="1 .8"/>' +
+           '<text x="' + cx.toFixed(1) + '" y="' + (Y(b.gain) - .9).toFixed(1) + '" font-size="' + fs + '" text-anchor="middle" fill="' + o.chg + '">+' + num(Math.round(b.gain)) + '</text>';
+    } else {
+      var hgt = Math.max(.6, base - Y(b.used)), col = o.barCol ? o.barCol(b.used) : o.ink;
+      s += '<rect x="' + x.toFixed(1) + '" y="' + (base - hgt).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + hgt.toFixed(1) + '" fill="' + col + '" rx=".4"/>';
+      if (b.used >= 1) s += '<text x="' + cx.toFixed(1) + '" y="' + (base - hgt - .9).toFixed(1) + '" font-size="' + fs + '" text-anchor="middle" font-weight="700" fill="' + o.ink + '">' + num(Math.round(b.used)) + '</text>';
+    }
+    if (k === 11) s += '<rect x="' + (x - .5).toFixed(1) + '" y="' + pt + '" width="' + (bw + 1) + '" height="' + (base - pt).toFixed(1) + '" fill="none" stroke="' + o.ink2 + '" stroke-width=".3" stroke-dasharray="1 1"/>';
+    if ((11 - k) % 2 === 0) s += '<text x="' + cx.toFixed(1) + '" y="' + (base + fs + 1.2).toFixed(1) + '" font-size="' + (fs * .92).toFixed(1) + '" text-anchor="middle" fill="' + o.ink2 + '">' + bHour(b.t, L) + '</text>';
+  });
+  return s + '</svg>';
+}
+var BTH = {
+  v17: { c: { W: 101, H: 28, lang: 'bn', fs: 2.6, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', fill: 'rgba(193,154,75,.38)', line: '#7a3414', chg: '#2f7a3a', proj: '#9a2c1f', low: '#9a2c1f', pp: '#efe6cb' },
+         b: { W: 101, H: 15, lang: 'bn', fs: 2.4, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', chg: '#2f7a3a', proj: '#9a2c1f', barCol: function(u){ return u >= 8 ? '#9a2c1f' : u >= 4 ? '#c0832d' : '#6b8a45'; } } },
+  v18: { c: { W: 131, H: 45, lang: 'bn', fs: 3, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', fill: 'rgba(20,20,20,.13)', line: '#141414', chg: '#141414', band: '#8c918b', proj: '#141414', low: '#141414', pp: '#c9cdc8' },
+         b: { W: 65, H: 45, lang: 'bn', fs: 3, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', chg: '#141414', proj: '#141414' } },
+  v19: { c: { W: 113, H: 46, lang: 'en', fs: 2.9, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', fill: 'rgba(27,31,19,.15)', line: '#1b1f13', chg: '#1b1f13', band: '#7d8a63', proj: '#1b1f13', low: '#1b1f13', pp: '#b9c3a6' },
+         b: { W: 113, H: 26, lang: 'en', fs: 2.7, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', chg: '#1b1f13', proj: '#1b1f13' } }
+};
+function drawBat(){
+  var A = bAnalyze();
+  if (!A){
+    var msg = document.documentElement.classList.contains('nobatt') ? '<div>এই ব্রাউজারে ব্যাটারির তথ্য পাওয়া যায় না<br><small>Chrome ব্রাউজারে খুলে দেখুন</small></div>' : 'ব্যাটারির তথ্য আসছে…';
+    ['bc17', 'bb17', 'bc18', 'bb18', 'bc19', 'bb19'].forEach(function(k){ seth(k, '<div class="bnone">' + msg + '</div>'); });
+    return;
+  }
+  ['v17', 'v18', 'v19'].forEach(function(v){
+    var n = v.slice(1); seth('bc' + n, bChart(A, BTH[v].c)); seth('bb' + n, bBars(A, BTH[v].b));
+  });
+  var B = bTexts(A, 'bn'), E = bTexts(A, 'en');
+  set('bl_bn', B.bl); set('bst_bn', B.st); set('brt_bn', B.rt); set('beta_bn', B.eta); set('blab_bn', B.lab); set('bused_bn', B.used); set('bpeak_bn', B.peak); set('bnote_bn', B.note);
+  set('bst_en', E.st); set('brt_en', E.rt); set('beta_en', E.eta); set('blab_en', E.lab); set('bused_en', E.used);
+  seth('lbp', lcd(String(A.lv)));
+  document.documentElement.style.setProperty('--lv', A.lv);
+  [].forEach.call(document.querySelectorAll('.bwrap'), function(e){ e.setAttribute('data-v', B.v); });
+  [].forEach.call(document.querySelectorAll('.bmeter'), function(e){ e.style.setProperty('--m', Math.round(B.meter)); });
+}
+function battTick(){ bhRec(); if (views[cur] && views[cur].dataset.bat) drawBat(); }
+
 function batt(){
   const R = document.documentElement.classList;
-  if (!navigator.getBattery){ R.add('nobatt'); return; }
+  if (!navigator.getBattery){ R.add('nobatt'); if (views[cur] && views[cur].dataset.bat) drawBat(); return; }
   navigator.getBattery().then(b => {
     const u = () => { const l = Math.round(b.level * 100); document.documentElement.style.setProperty('--lv', l);
       R.toggle('chg', b.charging); R.toggle('low', l <= 20 && !b.charging); set('bp', bn(l) + '%'); set('bpe', l + '%'); };
-    u(); b.onlevelchange = u; b.onchargingchange = u;
-  }).catch(() => R.add('nobatt'));
+    var w = function(){ BAT = { level: Math.round(b.level * 100), chg: b.charging, ct: b.chargingTime, dt: b.dischargingTime }; bhRec(); if (views[cur] && views[cur].dataset.bat) drawBat(); };
+    u(); w(); b.onlevelchange = function(){ u(); w(); }; b.onchargingchange = function(){ u(); w(); };
+  }).catch(() => { R.add('nobatt'); if (views[cur] && views[cur].dataset.bat) drawBat(); });
 }
 batt();
 go(cur); tick(); setInterval(tick, 1000);

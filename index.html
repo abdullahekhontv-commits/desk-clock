@@ -368,6 +368,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 #bar button:active{background:#7d5f26}
 #bN{min-width:calc(22*var(--u));text-align:center;font-size:calc(3.2*var(--u))}
 #bW{width:calc(1.3*var(--u));height:calc(1.3*var(--u));border-radius:50%;background:#666}#bW.on{background:#7fb26a}
+#wxe{display:none;position:fixed;left:calc(2*var(--w));bottom:calc(1*var(--u));z-index:9;font:600 calc(2.6*var(--u)) sans-serif;color:#e66;background:rgba(0,0,0,.55);padding:calc(.4*var(--u)) calc(1*var(--w));border-radius:calc(.6*var(--u));pointer-events:none}
 #rot{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:20;background:#000;color:#f3dca0;place-items:center;font-size:calc(5*var(--w));text-align:center;padding:calc(8*var(--w))}
 @media (orientation:portrait){#rot{display:grid}}
 @media (prefers-reduced-motion:reduce){.colon{animation:none}}
@@ -601,6 +602,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 </div>
 
 <div id="dimmer"></div>
+<div id="wxe"></div>
 <div id="bar">
   <button id="bP" aria-label="আগের ডিজাইন">‹</button><span id="bN"></span><button id="bX" aria-label="পরের ডিজাইন">›</button>
   <button id="bD" aria-label="ডিম">☾</button><button id="bF" aria-label="ফুলস্ক্রিন">⛶</button><span id="bW" title="স্ক্রিন জাগ্রত"></span>
@@ -847,14 +849,31 @@ function showWeather(w, stale){
   seth('f3', fcHTML(D, 1, 3, 'bn')); seth('f3e', fcHTML(D, 1, 3, 'en')); seth('fe', fcHTML(D, 0, 4, 'en'));
   WXD = w; drawCharts();
 }
+/* weather loader: XHR (works on old tablets), https first then http, error shown on screen */
+function wxMsg(t){ var e = $('wxe'); if (e){ e.textContent = t || ''; e.style.display = t ? 'block' : 'none'; } }
+function wxGet(url, ok, bad){
+  try{
+    var x = new XMLHttpRequest(); x.open('GET', url, true); x.timeout = 20000;
+    x.onload = function(){ if (x.status >= 200 && x.status < 300){ try { ok(JSON.parse(x.responseText)); } catch (e){ bad('JSON: ' + e.message); } } else bad('HTTP ' + x.status); };
+    x.onerror = function(){ bad('নেটওয়ার্ক/সার্টিফিকেট এরর'); };
+    x.ontimeout = function(){ bad('টাইমআউট'); };
+    x.send();
+  }catch(e){ bad(e.message); }
+}
 function loadWeather(){
-  fetch(URL_WX).then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(w){
+  var finish = function(w){
     w.savedAt = Date.now();
     try { localStorage.setItem('wx3', JSON.stringify(w)); } catch (e) {}
-    showWeather(w, false);
-  }).catch(function(){
+    try { showWeather(w, false); wxMsg(''); } catch (e){ wxMsg('ওয়েদার কোড এরর: ' + e.message); }
+  };
+  var fail = function(why){
     var w = null; try { w = JSON.parse(localStorage.getItem('wx3')); } catch (e2) {}
-    if (w) showWeather(w, true); else set('cond', 'ওয়েদার পাওয়া যায়নি');
+    try { if (w) showWeather(w, true); else set('cond', 'ওয়েদার পাওয়া যায়নি'); } catch (e3) {}
+    wxMsg('ওয়েদার আসেনি: ' + why);
+    setTimeout(loadWeather, 60000);
+  };
+  wxGet(URL_WX, finish, function(why1){
+    wxGet(URL_WX.replace('https://', 'http://'), finish, function(why2){ fail(why1 + ' / ' + why2); });
   });
 }
 

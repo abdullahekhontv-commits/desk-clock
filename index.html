@@ -243,11 +243,11 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .fq .q2 svg{width:100%;height:100%;display:block}
 .fq em{font-style:normal;opacity:.62;margin-left:.45em}
 .fq .q5{display:none}
-.v1 .f3{--fs:calc(2.9*var(--u));--fi:calc(6.4*var(--u))}
-.v2 .f3{--fs:calc(2.3*var(--u));--fi:calc(4.6*var(--u))}
+.v1 .f3{--fs:calc(3.4*var(--u));--fi:calc(7.4*var(--u))}
+.v2 .f3{--fs:calc(2.8*var(--u));--fi:calc(5.4*var(--u))}
 .v4 .f3{--fs:calc(4*var(--u));--fi:calc(8*var(--u));--fl:rgba(255,180,77,.3);--pp:#000;color:#ffb44d;width:calc(118*var(--u));margin-top:calc(2*var(--u));gap:calc(3*var(--w))}
 .v5 .f3{--fs:calc(3.2*var(--u));--fi:calc(6.4*var(--u));--fl:#444;--pp:#050505;color:#ddd;margin-top:calc(1.6*var(--u))}
-.v10 .f3,.v11 .f3{--fs:calc(2.9*var(--u));--fi:calc(6*var(--u));--fl:rgba(27,31,19,.4);--pp:#b9c3a6;color:#1b1f13;font-weight:700}
+.v10 .f3,.v11 .f3{--fs:calc(3.3*var(--u));--fi:calc(6.6*var(--u));--fl:rgba(27,31,19,.4);--pp:#b9c3a6;color:#1b1f13;font-weight:700}
 .v10 .f3{padding-top:calc(.8*var(--u));border-top:calc(.3*var(--u)) solid #1b1f13}
 .v10.on>.fit{grid-template-rows:auto 1fr auto auto}
 
@@ -265,7 +265,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 /* v12: clock | date, month calendar, 4-day forecast */
 .v12.on>.fit{display:grid;grid-template-rows:auto 1fr auto;gap:calc(1.8*var(--u));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
 .xhd{display:flex;align-items:baseline;gap:calc(1.4*var(--w));line-height:1;white-space:nowrap}
-.xhd .xt{font-size:calc(15*var(--u))}.xhd .xap{font-size:calc(8*var(--u))}
+.xhd .xt{font-size:calc(13.2*var(--u))}.xhd .xap{font-size:calc(7*var(--u))}
 .xhd .xbar{width:calc(.5*var(--u));height:calc(13*var(--u));background:#0d0d0d;align-self:center;margin:0 calc(.6*var(--w))}
 .xbd{display:grid;grid-template-columns:calc(78*var(--u)) 1fr;gap:calc(4*var(--w));min-height:0}
 .xcb{display:flex;flex-direction:column;min-height:0}
@@ -318,11 +318,11 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .v14 .q3 em{opacity:.6;font-size:.8em}
 
 /* v15: big time + hourly chart + 4-day chart */
-.v15.on>.fit{display:grid;grid-template-columns:1fr calc(112*var(--u));gap:calc(3*var(--w));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
+.v15.on>.fit{display:grid;grid-template-columns:minmax(0,1fr) calc(112*var(--u));gap:calc(3*var(--w));padding:calc(6.4*var(--u)) calc(4*var(--w)) calc(3*var(--u))}
 .v15 .xlf{align-items:center;justify-content:center;gap:calc(.6*var(--u));line-height:.95;text-align:center}
-.v15 .xlf .xt{font-size:calc(20*var(--u));white-space:nowrap}
+.v15 .xlf .xt{font-size:calc(19*var(--u));white-space:nowrap}
 .v15 .xlf .xap{font-size:calc(24*var(--u));line-height:1}
-.v15 .xlf .xwl{font-size:calc(4.4*var(--u));margin-top:calc(2*var(--u))}
+.v15 .xlf .xwl{font-size:calc(4.2*var(--u));margin-top:calc(2*var(--u));white-space:normal;line-height:1.15;max-width:100%}
 .xcol{display:flex;flex-direction:column;gap:calc(1.6*var(--u));min-height:0}
 .xdt{text-align:right;font-size:calc(7.6*var(--u));line-height:1;text-transform:uppercase}
 .xch svg{width:calc(112*var(--u))}
@@ -737,7 +737,7 @@ function drawCharts(){
       `<polyline points="${pts.map((p, k) => X(k).toFixed(1) + ',' + Y(p.v).toFixed(1)).join(' ')}" stroke-width=".75" stroke-linejoin="round"/>`;
     pts.forEach((p, k) => {
       s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="1.2" fill="currentColor" stroke="none"/>` +
-        `<text x="${X(k).toFixed(1)}" y="${(Y(p.v) - 3).toFixed(1)}" font-size="3.7" text-anchor="middle" fill="currentColor" stroke="none">${Math.round(p.v)}°C</text>` +
+        `<text x="${X(k).toFixed(1)}" y="${(Y(p.v) - 3).toFixed(1)}" font-size="3.7" text-anchor="middle" fill="currentColor" stroke="var(--pp)" stroke-width="1.1" paint-order="stroke">${Math.round(p.v)}°C</text>` +
         `<text x="${X(k).toFixed(1)}" y="30" font-size="3.5" text-anchor="middle" fill="currentColor" stroke="none">${p.h % 12 || 12}${p.h < 12 ? 'am' : 'pm'}</text>`;
     });
     seth('ch1', s + '</svg>');
@@ -751,7 +751,7 @@ function drawCharts(){
        '<line x1="96" y1="1.6" x2="102" y2="1.6" stroke-width=".55" stroke-dasharray="1.4 1"/><text x="103.5" y="2.8" font-size="2.8" fill="currentColor" stroke="none">MIN</text>';
   s += `<polyline points="${mxs.map((v, k) => X(k).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ')}" stroke-width=".8" stroke-linejoin="round"/>` +
        `<polyline points="${mns.map((v, k) => X(k).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ')}" stroke-width=".55" stroke-dasharray="1.6 1.2" stroke-linejoin="round"/>`;
-  mxs.forEach((v, k) => { s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="1.2" fill="currentColor" stroke="none"/><text x="${X(k).toFixed(1)}" y="${(Y(v) - 2.2).toFixed(1)}" font-size="3.3" text-anchor="middle" fill="currentColor" stroke="none">${Math.round(v)}°</text>`; });
+  mxs.forEach((v, k) => { s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="1.2" fill="currentColor" stroke="none"/><text x="${X(k).toFixed(1)}" y="${(Y(v) - 2.2).toFixed(1)}" font-size="3.3" text-anchor="middle" fill="currentColor" stroke="var(--pp)" stroke-width="1.1" paint-order="stroke">${Math.round(v)}°</text>`; });
   mns.forEach((v, k) => { s += `<circle cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="1" fill="var(--pp)" stroke-width=".5"/>`; });
   for (let k = 0; k < n; k++){
     const dow = new Date(D.time[k] + 'T00:00:00').getDay();

@@ -719,6 +719,7 @@ const AGENDA = { 1: 'Team Meet (11am)', 3: 'Call Sam (3pm)', 5: 'Buy Coffee (5pm
 /* ---- clock + calendar ---- */
 let lastDay = '', manualDim = null, lastHr = -1;
 function tick(){
+  if (document.hidden) return;
   const d = new Date(), h = d.getHours(), m = d.getMinutes(), s = d.getSeconds(), h12 = h % 12 || 12;
   const hh = bn(pad(h12)), mm = bn(pad(m)), ss = bn(pad(s));
   set('h1', hh[0]); set('h2', hh[1]); set('m1', mm[0]); set('m2', mm[1]); set('s1', ss[0]); set('s2', ss[1]);
@@ -855,22 +856,31 @@ function wxGet(url, ok, bad){
   try{
     var x = new XMLHttpRequest(); x.open('GET', url, true); x.timeout = 20000;
     x.onload = function(){ if (x.status >= 200 && x.status < 300){ try { ok(JSON.parse(x.responseText)); } catch (e){ bad('JSON: ' + e.message); } } else bad('HTTP ' + x.status); };
-    x.onerror = function(){ bad('নেটওয়ার্ক/সার্টিফিকেট এরর'); };
+    x.onerror = function(){
+      if (window.fetch){ fetch(url).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(ok).catch(function(){ bad('নেটওয়ার্ক এরর'); }); }
+      else bad('নেটওয়ার্ক এরর');
+    };
     x.ontimeout = function(){ bad('টাইমআউট'); };
     x.send();
   }catch(e){ bad(e.message); }
 }
+var wxFails = 0, wxBusy = false;
 function loadWeather(){
+  if (wxBusy) return; wxBusy = true;
   var finish = function(w){
+    wxBusy = false; wxFails = 0;
     w.savedAt = Date.now();
     try { localStorage.setItem('wx3', JSON.stringify(w)); } catch (e) {}
     try { showWeather(w, false); wxMsg(''); } catch (e){ wxMsg('ওয়েদার কোড এরর: ' + e.message); }
   };
   var fail = function(why){
+    wxBusy = false;
     var w = null; try { w = JSON.parse(localStorage.getItem('wx3')); } catch (e2) {}
     try { if (w) showWeather(w, true); else set('cond', 'ওয়েদার পাওয়া যায়নি'); } catch (e3) {}
-    wxMsg('ওয়েদার আসেনি: ' + why);
-    setTimeout(loadWeather, 60000);
+    var ua = (navigator.userAgent.match(/(SamsungBrowser|Chrome|Version)\/[\d.]+/) || [''])[0];
+    wxMsg('ওয়েদার আসেনি: ' + why + ' [' + location.protocol + ' ' + ua + ']');
+    wxFails = Math.min(wxFails + 1, 4);
+    setTimeout(loadWeather, [2, 5, 10, 15][wxFails - 1] * 60000);   /* back off: saves battery */
   };
   wxGet(URL_WX, finish, function(why1){
     wxGet(URL_WX.replace('https://', 'http://'), finish, function(why2){ fail(why1 + ' / ' + why2); });
@@ -885,9 +895,9 @@ function startVideo(){
     const c = document.createElement('canvas'); c.width = c.height = 16;
     if (!c.captureStream) return;
     const x = c.getContext('2d'); let t = 0;
-    setInterval(() => { x.fillStyle = (t++ % 2) ? '#000' : '#020202'; x.fillRect(0, 0, 16, 16); }, 400);
+    setInterval(() => { x.fillStyle = (t++ % 2) ? '#000' : '#020202'; x.fillRect(0, 0, 16, 16); }, 1500);
     const v = document.createElement('video');
-    v.setAttribute('playsinline', ''); v.muted = true; v.loop = true; v.srcObject = c.captureStream(2);
+    v.setAttribute('playsinline', ''); v.muted = true; v.loop = true; v.srcObject = c.captureStream(1);
     v.style.cssText = 'position:fixed;left:0;top:0;width:2px;height:2px;opacity:.02;pointer-events:none;z-index:-1';
     document.body.appendChild(v); vid = v;
     v.play().then(() => $('bW').classList.add('on')).catch(() => {});
@@ -895,6 +905,7 @@ function startVideo(){
 }
 function keepAwake(){
   if (wl && !wl.released) return;
+  if (vid && !vid.paused) return;
   var done = function(ok){ if (!ok) startVideo(); $('bW').classList.toggle('on', ok || !!(vid && !vid.paused)); };
   try{
     if ('wakeLock' in navigator){
@@ -909,7 +920,7 @@ function keepAwake(){
   done(false);
 }
 setInterval(() => { if (document.visibilityState === 'visible') keepAwake(); }, 20000);
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') keepAwake(); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible'){ tick(); keepAwake(); } });
 
 /* ---- designs, fullscreen, controls ---- */
 const views = [...document.querySelectorAll('.view')];
@@ -1008,7 +1019,7 @@ function batt(){
 }
 batt();
 go(cur); tick(); setInterval(tick, 1000);
-loadWeather(); setInterval(loadWeather, 15 * 60 * 1000);
+loadWeather(); setInterval(function(){ if (wxFails === 0) loadWeather(); }, 15 * 60 * 1000);
 keepAwake();
 </script>
 </body>

@@ -435,15 +435,16 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .bph b{font-size:calc(3.6*var(--u));font-weight:800}
 .bph span{font-size:calc(2.5*var(--u));color:#6a5a40}
 .bpt{font-size:calc(2.5*var(--u));color:#6a5a40;margin:calc(.4*var(--u)) 0 0}
+.bpair{display:flex;justify-content:space-between}
 .v17 .bstat{flex:.55;justify-content:space-between}
 .bs1{display:flex;align-items:center}
 .bs1>*+*{margin-left:calc(2*var(--w))}
 .bs1 .bsub{flex:1;min-width:0}
 .bbig{font-size:calc(10*var(--u));line-height:1;color:var(--glow);font-weight:800;white-space:nowrap}
 .bvt{font-size:calc(3.8*var(--u));font-weight:800;margin-bottom:calc(.7*var(--u))}
-.bs2{display:grid;grid-template-columns:repeat(3,1fr);grid-column-gap:calc(1.4*var(--w))}
-.bs2 small{display:block;font-size:calc(2.6*var(--u));opacity:.8}
-.bs2 b{font-size:calc(3.4*var(--u));font-weight:800;color:var(--glow);white-space:nowrap}
+.bs2{display:grid;grid-template-columns:repeat(4,1fr);grid-column-gap:calc(1.4*var(--w))}
+.bs2 small{display:block;font-size:calc(2.3*var(--u));opacity:.8}
+.bs2 b{font-size:calc(2.9*var(--u));font-weight:800;color:var(--glow);white-space:nowrap}
 
 /* v18 */
 .v18{--pp:#c9cdc8;background:var(--grain),var(--pp);color:#141414}
@@ -463,7 +464,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .brow span{opacity:.75}.brow b{font-weight:800}
 .v18 .bmeter{margin-top:calc(1.2*var(--u));background:rgba(0,0,0,.12);border-color:#6f736e}
 .v18 .bmeter i{background:#141414}
-.b18mid{display:grid;grid-template-columns:calc(134*var(--u)) calc(68*var(--u));grid-column-gap:calc(3.7*var(--u));min-height:0}
+.b18mid{display:grid;grid-template-columns:calc(98*var(--u)) calc(49*var(--u)) calc(50*var(--u));grid-column-gap:calc(3.7*var(--u));min-height:0}
 .bpn{border:calc(.3*var(--u)) solid #6f736e;border-radius:calc(.8*var(--u));background:rgba(255,255,255,.18);padding:calc(.7*var(--u)) calc(1*var(--u));min-height:0}
 .bpn .pt{font-size:calc(3*var(--u));font-weight:800;height:calc(4*var(--u));line-height:calc(3.6*var(--u))}
 .bfoot{display:flex;justify-content:space-between;font-size:calc(2.9*var(--u));background:#b6bab5;border-radius:calc(.8*var(--u));padding:calc(.7*var(--u)) calc(1.2*var(--w))}
@@ -492,6 +493,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
 .v19 .bmeter i{background:repeating-linear-gradient(90deg,#1b1f13 0 calc(1.3*var(--u)),transparent calc(1.3*var(--u)) calc(1.8*var(--u)))}
 .lc2{display:flex;flex-direction:column;justify-content:space-between;min-height:0}
 .lbx{border:calc(.3*var(--u)) solid #1b1f13;padding:calc(.4*var(--u)) calc(.5*var(--u));font-family:'Courier New',monospace;font-weight:700}
+.lrow2{display:flex;justify-content:space-between}
 .lbx .pt{font-size:calc(2.5*var(--u));letter-spacing:.14em;height:calc(3.2*var(--u));line-height:calc(3*var(--u))}
 
 /* ===== old-browser fallbacks (switched on by script) ===== */
@@ -727,8 +729,10 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
     <div class="page bwrap">
       <div class="bph"><b>ব্যাটারি খরচের গ্রাফ</b><span><span data-k="wd"></span> · <span data-k="dl"></span></span></div>
       <div data-h="bc17"></div>
-      <div class="bpt">প্রতি ঘণ্টায় কত % খরচ হয়েছে</div>
-      <div data-h="bb17"></div>
+      <div class="bpair">
+        <div><div class="bpt">ঘণ্টায় খরচ (%)</div><div data-h="bb17"></div></div>
+        <div><div class="bpt">১% খরচে কত মিনিট</div><div data-h="bm17"></div></div>
+      </div>
     </div>
     <div class="weather bstat bwrap">
       <div class="bs1"><div class="bbig" data-k="bl_bn"></div><div class="bsub"><div class="bvt" data-k="bst_bn"></div><div class="bmeter"><i></i></div></div></div>
@@ -736,6 +740,7 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
         <div><small>খরচের হার</small><b data-k="brt_bn"></b></div>
         <div><small data-k="blab_bn"></small><b data-k="beta_bn"></b></div>
         <div><small>১২ ঘণ্টায় খরচ</small><b data-k="bused_bn"></b></div>
+        <div><small>প্রতি ১% খরচে</small><b data-k="bm1_bn"></b></div>
       </div>
     </div>
   </div>
@@ -750,13 +755,14 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
         <div class="brow"><span>খরচের হার</span><b data-k="brt_bn"></b></div>
         <div class="brow"><span data-k="blab_bn"></span><b data-k="beta_bn"></b></div>
         <div class="brow"><span>১২ ঘণ্টায় খরচ</span><b data-k="bused_bn"></b></div>
-        <div class="brow"><span>সর্বোচ্চ খরচের সময়</span><b data-k="bpeak_bn"></b></div>
+        <div class="brow"><span>প্রতি ১% খরচে</span><b data-k="bm1_bn"></b></div>
         <div class="bmeter"><i></i></div>
       </div>
     </div>
     <div class="b18mid">
-      <div class="bpn"><div class="pt">ব্যাটারি লেভেল · গত ১২ ঘণ্টা ও পূর্বাভাস</div><div data-h="bc18"></div></div>
-      <div class="bpn"><div class="pt">প্রতি ঘণ্টায় খরচ (%)</div><div data-h="bb18"></div></div>
+      <div class="bpn"><div class="pt">ব্যাটারি লেভেল · ১২ ঘণ্টা</div><div data-h="bc18"></div></div>
+      <div class="bpn"><div class="pt">ঘণ্টায় খরচ (%)</div><div data-h="bb18"></div></div>
+      <div class="bpn"><div class="pt">১% খরচে কত মিনিট</div><div data-h="bm18"></div></div>
     </div>
     <div class="bfoot"><span>ব্যাটারি বিশ্লেষণ</span><span data-k="bnote_bn"></span></div>
   </div>
@@ -774,12 +780,16 @@ body{font-family:'Noto Serif Bengali','Kalpurush','Siyam Rupali',serif}
         <div class="brow"><span>DRAIN</span><b data-k="brt_en"></b></div>
         <div class="brow"><span data-k="blab_en"></span><b data-k="beta_en"></b></div>
         <div class="brow"><span>USED 12H</span><b data-k="bused_en"></b></div>
+        <div class="brow"><span>PER 1%</span><b data-k="bm1_en"></b></div>
         <div class="bmeter"><i></i></div>
       </div>
     </div>
     <div class="lc2">
       <div class="lbx" style="height:calc(53*var(--u))"><div class="pt">BATTERY LEVEL / 12H + FORECAST</div><div data-h="bc19"></div></div>
-      <div class="lbx" style="height:calc(34*var(--u))"><div class="pt">USED PER HOUR (%)</div><div data-h="bb19"></div></div>
+      <div class="lrow2">
+        <div class="lbx" style="width:calc(56.5*var(--u));height:calc(34*var(--u))"><div class="pt">USED / HOUR (%)</div><div data-h="bb19"></div></div>
+        <div class="lbx" style="width:calc(56.5*var(--u));height:calc(34*var(--u))"><div class="pt">MIN PER 1%</div><div data-h="bm19"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1239,8 +1249,19 @@ function bAnalyze(){
     bars[bi].has = true; var dl = b[1] - a[1];
     if (b[2] === 0 && a[2] === 0 && dl < 0) bars[bi].used += -dl; else if (b[2] === 1 && dl > 0) bars[bi].gain += dl;
   }
+  var ev = [], prevT = null;
+  for (var q = 1; q < P.length; q++){
+    a = P[q - 1]; b = P[q];
+    if (b[0] - a[0] > 20 * 60000 || a[2] || b[2]){ prevT = null; continue; }
+    if (b[1] < a[1]){
+      if (prevT !== null) ev.push({ t: b[0], m: (b[0] - prevT) / 60000 / (a[1] - b[1]), lv: b[1] });
+      prevT = b[0];
+    }
+  }
+  var curMin = (!chg && prevT !== null) ? (now - prevT) / 60000 : null, rec = ev.slice(-8), minAvg = null;
+  if (rec.length){ minAvg = 0; rec.forEach(function(x){ minAvg += x.m; }); minAvg /= rec.length; }
   var used = 0, peak = null, cnt = 0; bars.forEach(function(x){ used += x.used; if (x.has) cnt++; if (x.used >= 2 && (!peak || x.used > peak.used)) peak = x; });
-  return { P: P, lv: lv, chg: chg, rate: rate, eta: eta, bars: bars, used: used, cnt: cnt, avg: cnt ? used / cnt : 0, peak: peak, first: P[0][0], now: now };
+  return { ev: ev, curMin: curMin, minAvg: minAvg, P: P, lv: lv, chg: chg, rate: rate, eta: eta, bars: bars, used: used, cnt: cnt, avg: cnt ? used / cnt : 0, peak: peak, first: P[0][0], now: now };
 }
 function bTexts(A, L){
   var en = L === 'en', f = function(n){ return en ? String(n) : bn(String(n)); }, r1 = function(n){ return (Math.round(n * 10) / 10).toFixed(1); };
@@ -1259,6 +1280,8 @@ function bTexts(A, L){
       T.rt = A.rate === 0 ? (en ? 'STABLE' : 'প্রায় স্থির') : '−' + f(r1(A.rate)) + u; T.meter = Math.min(100, A.rate / 12 * 100);
     }
   }
+  var fm = function(x){ var r = x < 10 ? (Math.round(x * 10) / 10).toFixed(1) : String(Math.round(x)); return en ? r + ' MIN' : bn(r) + ' মিনিট'; };
+  T.m1 = (!A.chg && A.minAvg !== null) ? fm(A.minAvg) : '—';
   T.used = A.cnt ? f(Math.round(A.used)) + '%' : '—';
   T.peak = A.peak ? bHour(A.peak.t, L) + '–' + bHour(A.peak.t + 3600000, L) + ' (' + f(Math.round(A.peak.used)) + '%)' : '—';
   T.note = A.chg ? (en ? '' : 'চার্জের সময় খরচ গণনা হয় না') : (A.cnt ? (en ? '' : 'গড় ' + f(r1(A.avg)) + '% প্রতি ঘণ্টায়') : 'কিছুক্ষণ চালু রাখলে গ্রাফ পূর্ণ হবে');
@@ -1342,27 +1365,58 @@ function bBars(A, o){
   });
   return s + '</svg>';
 }
+function bMinPer(A, o){
+  var W = o.W, H = o.H, L = o.lang, en = L === 'en', fs = o.fs, pl = 7, pr = 1.5, pt = fs + 2.2, pb = fs + 2.4;
+  var num = function(x){ return en ? String(x) : bn(String(x)); };
+  var E = A.ev.slice(-15), cur = A.curMin, n = E.length + (cur !== null ? 1 : 0);
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:calc(' + W + '*var(--u));height:calc(' + H + '*var(--u))" fill="none">';
+  var base = H - pb;
+  if (!n) return s + '<line x1="' + pl + '" y1="' + base + '" x2="' + (W - pr) + '" y2="' + base + '" stroke="' + o.ink + '" stroke-width=".45"/><text x="' + (W / 2) + '" y="' + (H / 2) + '" font-size="' + fs + '" text-anchor="middle" fill="' + o.ink2 + '">' + (en ? 'COLLECTING…' : 'তথ্য জমা হচ্ছে…') + '</text></svg>';
+  var mx = 10; E.forEach(function(e){ mx = Math.max(mx, e.m); }); if (cur !== null) mx = Math.max(mx, cur); mx = Math.ceil(mx / 10) * 10;
+  var Y = function(v){ return base - v / mx * (base - pt); }, N = 15, sw = (W - pl - pr) / N, bw = sw * .72;
+  [mx / 2, mx].forEach(function(v){ s += '<line x1="' + pl + '" y1="' + Y(v).toFixed(1) + '" x2="' + (W - pr) + '" y2="' + Y(v).toFixed(1) + '" stroke="' + o.grid + '" stroke-width=".25"/><text x="' + (pl - 1) + '" y="' + (Y(v) + fs * .35).toFixed(1) + '" font-size="' + fs + '" text-anchor="end" fill="' + o.ink2 + '">' + num(Math.round(v)) + '</text>'; });
+  s += '<line x1="' + pl + '" y1="' + base + '" x2="' + (W - pr) + '" y2="' + base + '" stroke="' + o.ink + '" stroke-width=".45"/>';
+  var top = 0, bot = 0; E.forEach(function(e, k){ if (e.m > E[top].m) top = k; if (e.m < E[bot].m) bot = k; });
+  var lab = function(k, v, bold){ var x = pl + k * sw + sw / 2; return '<text x="' + x.toFixed(1) + '" y="' + (Y(v) - .9).toFixed(1) + '" font-size="' + fs + '" text-anchor="middle"' + (bold ? ' font-weight="700"' : '') + ' fill="' + o.ink + '">' + num(Math.round(v)) + '</text>'; };
+  E.forEach(function(e, k){
+    var x = pl + k * sw + (sw - bw) / 2, h = Math.max(.6, base - Y(e.m));
+    s += '<rect x="' + x.toFixed(1) + '" y="' + (base - h).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + (o.mCol ? o.mCol(e.m) : o.ink) + '" rx=".3"/>';
+    if (k === top || (k === bot && bot !== top)) s += lab(k, e.m, true);
+  });
+  var avg = 0; E.forEach(function(e){ avg += e.m; }); if (E.length){ avg /= E.length;
+    s += '<line x1="' + pl + '" y1="' + Y(avg).toFixed(1) + '" x2="' + (W - pr) + '" y2="' + Y(avg).toFixed(1) + '" stroke="' + o.proj + '" stroke-width=".5" stroke-dasharray="1.6 1.2"/>'; }
+  if (cur !== null){
+    var kc = E.length, xc = pl + kc * sw + (sw - bw) / 2, hc = Math.max(.6, base - Y(cur));
+    s += '<rect x="' + xc.toFixed(1) + '" y="' + (base - hc).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + hc.toFixed(1) + '" fill="none" stroke="' + o.ink + '" stroke-width=".6" stroke-dasharray="1 .8"/>' + lab(kc, cur, true);
+  }
+  if (E.length) s += '<text x="' + pl + '" y="' + (base + fs + 1.2).toFixed(1) + '" font-size="' + (fs * .92).toFixed(1) + '" fill="' + o.ink2 + '">' + bHour(E[0].t, L) + '</text>';
+  s += '<text x="' + (W - pr) + '" y="' + (base + fs + 1.2).toFixed(1) + '" font-size="' + (fs * .92).toFixed(1) + '" text-anchor="end" fill="' + o.ink2 + '">' + (cur !== null ? (en ? 'NOW' : 'এখন') : bHour(A.now, L)) + '</text>';
+  return s + '</svg>';
+}
 var BTH = {
   v17: { c: { W: 101, H: 28, lang: 'bn', fs: 2.6, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', fill: 'rgba(193,154,75,.38)', line: '#7a3414', chg: '#2f7a3a', proj: '#9a2c1f', low: '#9a2c1f', pp: '#efe6cb' },
-         b: { W: 101, H: 15, lang: 'bn', fs: 2.4, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', chg: '#2f7a3a', proj: '#9a2c1f', barCol: function(u){ return u >= 8 ? '#9a2c1f' : u >= 4 ? '#c0832d' : '#6b8a45'; } } },
-  v18: { c: { W: 131, H: 45, lang: 'bn', fs: 3, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', fill: 'rgba(20,20,20,.13)', line: '#141414', chg: '#141414', band: '#8c918b', proj: '#141414', low: '#141414', pp: '#c9cdc8' },
-         b: { W: 65, H: 45, lang: 'bn', fs: 3, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', chg: '#141414', proj: '#141414' } },
+         b: { W: 49, H: 15, lang: 'bn', fs: 2.3, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', chg: '#2f7a3a', proj: '#9a2c1f', barCol: function(u){ return u >= 8 ? '#9a2c1f' : u >= 4 ? '#c0832d' : '#6b8a45'; } },
+         m: { W: 49, H: 15, lang: 'bn', fs: 2.3, ink: '#2b2117', ink2: '#6a5a40', grid: 'rgba(120,90,40,.4)', proj: '#9a2c1f', mCol: function(m){ return m < 5 ? '#9a2c1f' : m < 12 ? '#c0832d' : '#6b8a45'; } } },
+  v18: { c: { W: 95, H: 45, lang: 'bn', fs: 3, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', fill: 'rgba(20,20,20,.13)', line: '#141414', chg: '#141414', band: '#8c918b', proj: '#141414', low: '#141414', pp: '#c9cdc8' },
+         b: { W: 46, H: 45, lang: 'bn', fs: 2.8, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', chg: '#141414', proj: '#141414' },
+         m: { W: 47, H: 45, lang: 'bn', fs: 2.8, ink: '#141414', ink2: '#4c4f4b', grid: 'rgba(20,20,20,.28)', proj: '#141414' } },
   v19: { c: { W: 113, H: 46, lang: 'en', fs: 2.9, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', fill: 'rgba(27,31,19,.15)', line: '#1b1f13', chg: '#1b1f13', band: '#7d8a63', proj: '#1b1f13', low: '#1b1f13', pp: '#b9c3a6' },
-         b: { W: 113, H: 26, lang: 'en', fs: 2.7, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', chg: '#1b1f13', proj: '#1b1f13' } }
+         b: { W: 54, H: 26, lang: 'en', fs: 2.6, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', chg: '#1b1f13', proj: '#1b1f13' },
+         m: { W: 54, H: 26, lang: 'en', fs: 2.6, ink: '#1b1f13', ink2: '#3d4430', grid: 'rgba(27,31,19,.28)', proj: '#1b1f13' } }
 };
 function drawBat(){
   var A = bAnalyze();
   if (!A){
     var msg = document.documentElement.classList.contains('nobatt') ? '<div>এই ব্রাউজারে ব্যাটারির তথ্য পাওয়া যায় না<br><small>Chrome ব্রাউজারে খুলে দেখুন</small></div>' : 'ব্যাটারির তথ্য আসছে…';
-    ['bc17', 'bb17', 'bc18', 'bb18', 'bc19', 'bb19'].forEach(function(k){ seth(k, '<div class="bnone">' + msg + '</div>'); });
+    ['bc17', 'bb17', 'bm17', 'bc18', 'bb18', 'bm18', 'bc19', 'bb19', 'bm19'].forEach(function(k){ seth(k, '<div class="bnone">' + msg + '</div>'); });
     return;
   }
   ['v17', 'v18', 'v19'].forEach(function(v){
-    var n = v.slice(1); seth('bc' + n, bChart(A, BTH[v].c)); seth('bb' + n, bBars(A, BTH[v].b));
+    var n = v.slice(1); seth('bc' + n, bChart(A, BTH[v].c)); seth('bb' + n, bBars(A, BTH[v].b)); seth('bm' + n, bMinPer(A, BTH[v].m));
   });
   var B = bTexts(A, 'bn'), E = bTexts(A, 'en');
-  set('bl_bn', B.bl); set('bst_bn', B.st); set('brt_bn', B.rt); set('beta_bn', B.eta); set('blab_bn', B.lab); set('bused_bn', B.used); set('bpeak_bn', B.peak); set('bnote_bn', B.note);
-  set('bst_en', E.st); set('brt_en', E.rt); set('beta_en', E.eta); set('blab_en', E.lab); set('bused_en', E.used);
+  set('bl_bn', B.bl); set('bst_bn', B.st); set('brt_bn', B.rt); set('beta_bn', B.eta); set('blab_bn', B.lab); set('bused_bn', B.used); set('bm1_bn', B.m1); set('bpeak_bn', B.peak); set('bnote_bn', B.note);
+  set('bst_en', E.st); set('brt_en', E.rt); set('beta_en', E.eta); set('blab_en', E.lab); set('bused_en', E.used); set('bm1_en', E.m1);
   seth('lbp', lcd(String(A.lv)));
   document.documentElement.style.setProperty('--lv', A.lv);
   [].forEach.call(document.querySelectorAll('.bwrap'), function(e){ e.setAttribute('data-v', B.v); });
